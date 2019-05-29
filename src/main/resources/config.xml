@@ -14,5 +14,40 @@
         <membershipFunction type="triangular" atrribute="overall_rating" name="mediocre" a1="35" a2="50" a3="65"/>
         <membershipFunction type="triangular" atrribute="overall_rating" name="good" a1="60" a2="70" a3="90"/>
         <membershipFunction type="triangular" atrribute="overall_rating" name="great" a1="80" a2="100" a3="100"/>
+		
+		<membershipFunction type="trapezoid" atrribute="potential" name="small potential" a1="0" b1="0" b2="35" a2="55"/>
+		<membershipFunction type="trapezoid" atrribute="potential" name="medium potential" a1="40" b1="60" b2="70" a2="80"/>
+		<membershipFunction type="trapezoid" atrribute="potential" name="big potential" a1="70" b1="80" b2="100" a2="100"/>
+		
+		<membershipFunction type="trapezoid" atrribute="acceleration" name="alowly accelerating" a1="0" b1="0" b2="50" a2="60"/>
+		<membershipFunction type="trapezoid" atrribute="acceleration" name="quickly accelerating" a1="50" b1="80" b2="100" a2="100"/>
+		
+		<membershipFunction type="trapezoid" atrribute="sprint_speed" name="very slow" a1="0" b1="0" b2="30" a2="40"/>
+		<membershipFunction type="trapezoid" atrribute="sprint_speed" name="slow" a1="35" b1="40" b2="50" a2="60"/>
+		<membershipFunction type="trapezoid" atrribute="sprint_speed" name="average speed" a1="55" b1="60" b2="70" a2="75"/>
+		<membershipFunction type="trapezoid" atrribute="sprint_speed" name="fast" a1="70" b1="75" b2="80" a2="90"/>
+		<membershipFunction type="trapezoid" atrribute="sprint_speed" name="super fast" a1="85" b1="90" b2="100" a2="100"/>
+		
+		<membershipFunction type="trapezoid" atrribute="agility" name="not dexterous at all" a1="0" b1="0" b2="20" a2="30"/>
+		<membershipFunction type="trapezoid" atrribute="agility" name="not very dexterous" a1="20" b1="40" b2="60" a2="70"/>
+		<membershipFunction type="trapezoid" atrribute="agility" name="dexterous" a1="60" b1="70" b2="80" a2="90"/>
+		<membershipFunction type="trapezoid" atrribute="agility" name="very dexterous" a1="80" b1="90" b2="100" a2="100"/>
+		
+		<membershipFunction type="trapezoid" atrribute="shot_power" name="shooting faintly" a1="0" b1="0" b2="40" a2="50"/>
+		<membershipFunction type="trapezoid" atrribute="shot_power" name="shooting mediocrely strong" a1="45" b1="55" b2="65" a2="75"/>
+		<membershipFunction type="trapezoid" atrribute="shot_power" name="shooting strong" a1="70" b1="75" b2="85" a2="95"/>
+		<membershipFunction type="trapezoid" atrribute="shot_power" name="shooting insanely strong" a1="90" b1="95" b2="100" a2="100"/>
+		
+		<membershipFunction type="trapezoid" atrribute="stamina" name="" a1="" b1="" b2="" a2=""/>
+		<membershipFunction type="trapezoid" atrribute="stamina" name="" a1="" b1="" b2="" a2=""/>
+		<membershipFunction type="trapezoid" atrribute="stamina" name="" a1="" b1="" b2="" a2=""/>
+		<membershipFunction type="trapezoid" atrribute="stamina" name="undying" a1="90" b1="95" b2="100" a2="100"/>
+		
+		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>
+		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>
+		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>
+		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>
+		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>
+		
     </membershipFunctions>
 </config>
