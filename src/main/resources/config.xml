@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <config>
-    <membershipFunctions>
-        <membershipFunction type="trapezoid" atrribute="height" name="short" a1="0" b1="0" b2="160" a2="170"/>
-        <membershipFunction type="trapezoid" atrribute="height" name="medium" a1="160" b1="170" b2="180" a2="200"/>
-        <membershipFunction type="trapezoid" atrribute="height" name="tall" a1="180" b1="190" b2="500" a2="500"/>
+    <summarizers>
+        <summarizer type="trapezoid" attribute="height" name="short" a1="0" b1="0" b2="160" a2="170"/>
+        <summarizer type="trapezoid" attribute="height" name="medium" a1="160" b1="170" b2="180" a2="200"/>
+        <summarizer type="trapezoid" attribute="height" name="tall" a1="180" b1="190" b2="500" a2="500"/>
 
-        <membershipFunction type="trapezoid" atrribute="weight" name="light" a1="0" b1="0" b2="45" a2="65"/>
-        <membershipFunction type="trapezoid" atrribute="weight" name="medium" a1="45" b1="65" b2="80" a2="90"/>
-        <membershipFunction type="trapezoid" atrribute="weight" name="heavy" a1="80" b1="90" b2="500" a2="500"/>
+        <summarizer type="trapezoid" attribute="weight" name="light" a1="0" b1="0" b2="45" a2="65"/>
+        <summarizer type="trapezoid" attribute="weight" name="medium" a1="45" b1="65" b2="80" a2="90"/>
+        <summarizer type="trapezoid" attribute="weight" name="heavy" a1="80" b1="90" b2="500" a2="500"/>
 
-        <membershipFunction type="triangular" atrribute="overall_rating" name="bad" a1="0" a2="0" a3="45"/>
-        <membershipFunction type="triangular" atrribute="overall_rating" name="mediocre" a1="35" a2="50" a3="65"/>
-        <membershipFunction type="triangular" atrribute="overall_rating" name="good" a1="60" a2="70" a3="90"/>
-        <membershipFunction type="triangular" atrribute="overall_rating" name="great" a1="80" a2="100" a3="100"/>
+        <summarizer type="triangular" attribute="overall_rating" name="bad" a1="0" a2="0" a3="45"/>
+        <summarizer type="triangular" attribute="overall_rating" name="mediocre" a1="35" a2="50" a3="65"/>
+        <summarizer type="triangular" attribute="overall_rating" name="good" a1="60" a2="70" a3="90"/>
+        <summarizer type="triangular" attribute="overall_rating" name="great" a1="80" a2="100" a3="100"/>
 		
-		<membershipFunction type="trapezoid" atrribute="potential" name="small potential" a1="0" b1="0" b2="35" a2="55"/>
-		<membershipFunction type="trapezoid" atrribute="potential" name="medium potential" a1="40" b1="60" b2="70" a2="80"/>
-		<membershipFunction type="trapezoid" atrribute="potential" name="big potential" a1="70" b1="80" b2="100" a2="100"/>
+		<summarizer type="trapezoid" attribute="potential" name="small potential" a1="0" b1="0" b2="35" a2="55"/>
+		<summarizer type="trapezoid" attribute="potential" name="medium potential" a1="40" b1="60" b2="70" a2="80"/>
+		<summarizer type="trapezoid" attribute="potential" name="big potential" a1="70" b1="80" b2="100" a2="100"/>
 		
-		<membershipFunction type="trapezoid" atrribute="acceleration" name="alowly accelerating" a1="0" b1="0" b2="50" a2="60"/>
-		<membershipFunction type="trapezoid" atrribute="acceleration" name="quickly accelerating" a1="50" b1="80" b2="100" a2="100"/>
+		<summarizer type="trapezoid" attribute="acceleration" name="slowly accelerating" a1="0" b1="0" b2="50" a2="60"/>
+		<summarizer type="trapezoid" attribute="acceleration" name="quickly accelerating" a1="50" b1="80" b2="100" a2="100"/>
 		
-		<membershipFunction type="trapezoid" atrribute="sprint_speed" name="very slow" a1="0" b1="0" b2="30" a2="40"/>
-		<membershipFunction type="trapezoid" atrribute="sprint_speed" name="slow" a1="35" b1="40" b2="50" a2="60"/>
-		<membershipFunction type="trapezoid" atrribute="sprint_speed" name="average speed" a1="55" b1="60" b2="70" a2="75"/>
-		<membershipFunction type="trapezoid" atrribute="sprint_speed" name="fast" a1="70" b1="75" b2="80" a2="90"/>
-		<membershipFunction type="trapezoid" atrribute="sprint_speed" name="super fast" a1="85" b1="90" b2="100" a2="100"/>
+		<summarizer type="trapezoid" attribute="sprint_speed" name="very slow" a1="0" b1="0" b2="30" a2="40"/>
+		<summarizer type="trapezoid" attribute="sprint_speed" name="slow" a1="35" b1="40" b2="50" a2="60"/>
+		<summarizer type="trapezoid" attribute="sprint_speed" name="average speed" a1="55" b1="60" b2="70" a2="75"/>
+		<summarizer type="trapezoid" attribute="sprint_speed" name="fast" a1="70" b1="75" b2="80" a2="90"/>
+		<summarizer type="trapezoid" attribute="sprint_speed" name="super fast" a1="85" b1="90" b2="100" a2="100"/>
 		
-		<membershipFunction type="trapezoid" atrribute="agility" name="not dexterous at all" a1="0" b1="0" b2="20" a2="30"/>
-		<membershipFunction type="trapezoid" atrribute="agility" name="not very dexterous" a1="20" b1="40" b2="60" a2="70"/>
-		<membershipFunction type="trapezoid" atrribute="agility" name="dexterous" a1="60" b1="70" b2="80" a2="90"/>
-		<membershipFunction type="trapezoid" atrribute="agility" name="very dexterous" a1="80" b1="90" b2="100" a2="100"/>
+		<summarizer type="trapezoid" attribute="agility" name="not dexterous at all" a1="0" b1="0" b2="20" a2="30"/>
+		<summarizer type="trapezoid" attribute="agility" name="not very dexterous" a1="20" b1="40" b2="60" a2="70"/>
+		<summarizer type="trapezoid" attribute="agility" name="dexterous" a1="60" b1="70" b2="80" a2="90"/>
+		<summarizer type="trapezoid" attribute="agility" name="very dexterous" a1="80" b1="90" b2="100" a2="100"/>
 		
-		<membershipFunction type="trapezoid" atrribute="shot_power" name="shooting faintly" a1="0" b1="0" b2="40" a2="50"/>
-		<membershipFunction type="trapezoid" atrribute="shot_power" name="shooting mediocrely strong" a1="45" b1="55" b2="65" a2="75"/>
-		<membershipFunction type="trapezoid" atrribute="shot_power" name="shooting strong" a1="70" b1="75" b2="85" a2="95"/>
-		<membershipFunction type="trapezoid" atrribute="shot_power" name="shooting insanely strong" a1="90" b1="95" b2="100" a2="100"/>
+		<summarizer type="trapezoid" attribute="shot_power" name="shooting faintly" a1="0" b1="0" b2="40" a2="50"/>
+		<summarizer type="trapezoid" attribute="shot_power" name="shooting mediocrely strong" a1="45" b1="55" b2="65" a2="75"/>
+		<summarizer type="trapezoid" attribute="shot_power" name="shooting strong" a1="70" b1="75" b2="85" a2="95"/>
+		<summarizer type="trapezoid" attribute="shot_power" name="shooting insanely strong" a1="90" b1="95" b2="100" a2="100"/>
 		
-		<membershipFunction type="trapezoid" atrribute="stamina" name="" a1="" b1="" b2="" a2=""/>
+		<!--<membershipFunction type="trapezoid" atrribute="stamina" name="" a1="" b1="" b2="" a2=""/>
 		<membershipFunction type="trapezoid" atrribute="stamina" name="" a1="" b1="" b2="" a2=""/>
 		<membershipFunction type="trapezoid" atrribute="stamina" name="" a1="" b1="" b2="" a2=""/>
 		<membershipFunction type="trapezoid" atrribute="stamina" name="undying" a1="90" b1="95" b2="100" a2="100"/>
@@ -47,7 +47,14 @@
 		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>
 		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>
 		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>
-		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>
+		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>-->
 		
-    </membershipFunctions>
+    </summarizers>
+    <quantifiers>
+        <quantifier quantifierType="relative" type="trapezoid" name="minority of" a1="0" b1="0" b2="0.3" a2="0.5"/>
+        <quantifier quantifierType="relative" type="trapezoid" name="around half of" a1="0.3" b1="0.4" b2="0.6" a2="0.7"/>
+        <quantifier quantifierType="relative" type="trapezoid" name="majority of" a1="0.5" b1="0.7" b2="1" a2="1"/>
+        <quantifier quantifierType="absolute" type="trapezoid" name="around 5000 of" a1="3000" b1="4500" b2="5500" a2="6000"/>
+        <quantifier quantifierType="absolute" type="trapezoid" name="around 7000 of" a1="5000" b1="6500" b2="7500" a2="8000"/>
+    </quantifiers>
 </config>

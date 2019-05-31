@@ -8,6 +8,31 @@ import java.sql.Statement;
 
 public class DatabaseRepository {
 
+    public int getPlayerCount() {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        int result = 0;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/database.sqlite");
+            connection.setAutoCommit(false);
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery("SELECT COUNT(*) FROM PLAYERS_INFO");
+
+            result = resultSet.getInt(0);
+            return result;
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(resultSet, statement, connection);
+        }
+
+        return result;
+    }
+
     public PlayerInfo getPlayerInfo(Integer id) {
         Connection connection = null;
         Statement statement = null;
@@ -39,15 +64,19 @@ public class DatabaseRepository {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                resultSet.close();
-                statement.close();
-                connection.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            closeConnection(resultSet, statement, connection);
         }
 
         return result;
+    }
+
+    private void closeConnection(ResultSet resultSet, Statement statement, Connection connection) {
+        try {
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

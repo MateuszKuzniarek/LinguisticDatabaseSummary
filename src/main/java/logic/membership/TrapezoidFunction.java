@@ -1,12 +1,16 @@
-package logic.membershipfunction;
+package logic.membership;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class TrapezoidFunction implements MembershipFunction {
     private double a1, b1, b2, a2;
 

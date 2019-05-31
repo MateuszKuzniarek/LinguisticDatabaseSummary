@@ -1,4 +1,4 @@
-package logic.membershipfunction;
+package logic.membership;
 
 public interface MembershipFunction {
 

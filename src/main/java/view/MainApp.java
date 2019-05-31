@@ -1,12 +1,12 @@
 package view;
 
 import data.DatabaseRepository;
+import data.XmlLoader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import logic.membershipfunction.TrapezoidFunction;
 
 
 public class MainApp extends Application {
@@ -15,7 +15,10 @@ public class MainApp extends Application {
 
     public static void main(String[] args) throws Exception {
         DatabaseRepository repository = new DatabaseRepository();
+        XmlLoader xmlLoader = new XmlLoader();
         System.out.println(repository.getPlayerInfo(1));
+        System.out.println(xmlLoader.getSummarizers("src/main/resources/config.xml"));
+        System.out.println(xmlLoader.getQuantifiers("src/main/resources/config.xml"));
 
         launch(args);
 
