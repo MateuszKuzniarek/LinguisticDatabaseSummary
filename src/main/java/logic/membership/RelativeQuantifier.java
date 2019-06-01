@@ -9,6 +9,6 @@ public class RelativeQuantifier extends Quantifier {
     @Override
     public double getValue(double r) {
         int entityCount = databaseRepository.getPlayerCount();
-        return membershipFunction.calculateMembership(r/entityCount);
+        return membershipFunction.calculateMembership(r / entityCount);
     }
 }

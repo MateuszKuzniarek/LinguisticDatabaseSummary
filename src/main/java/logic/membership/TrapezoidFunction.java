@@ -1,5 +1,6 @@
 package logic.membership;
 
+import logic.membership.MembershipFunction;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

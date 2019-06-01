@@ -11,5 +11,6 @@ public abstract class Quantifier {
 
     protected String label;
     protected MembershipFunction membershipFunction;
+
     public abstract double getValue(double r);
 }

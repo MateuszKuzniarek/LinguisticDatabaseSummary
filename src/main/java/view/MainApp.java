@@ -1,12 +1,13 @@
 package view;
 
-import data.DatabaseRepository;
-import data.XmlLoader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import logic.SummaryGenerator;
+import logic.qualitymeasures.DegreeOfTruth;
+import logic.summaries.Summary;
 
 
 public class MainApp extends Application {
@@ -14,11 +15,15 @@ public class MainApp extends Application {
 
 
     public static void main(String[] args) throws Exception {
-        DatabaseRepository repository = new DatabaseRepository();
-        XmlLoader xmlLoader = new XmlLoader();
-        System.out.println(repository.getPlayerInfo(1));
-        System.out.println(xmlLoader.getSummarizers("src/main/resources/config.xml"));
-        System.out.println(xmlLoader.getQuantifiers("src/main/resources/config.xml"));
+        SummaryGenerator summaryGenerator = new SummaryGenerator();
+        summaryGenerator.addYagerSummaries("weight");
+        summaryGenerator.addYagerSummaries("height");
+        summaryGenerator.getQualityMeasures().add(new DegreeOfTruth());
+        summaryGenerator.sortSummariesByQuality();
+        for(Summary summary : summaryGenerator.getSummaries()) {
+            System.out.println(summary.getSummary());
+        }
+
 
         launch(args);
 

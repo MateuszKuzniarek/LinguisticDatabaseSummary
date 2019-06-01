@@ -1,5 +1,7 @@
 package logic.membership;
 
+import logic.membership.TrapezoidFunction;
+
 public class TriangularFunction extends TrapezoidFunction {
 
     public TriangularFunction(double a1, double b, double a2) {

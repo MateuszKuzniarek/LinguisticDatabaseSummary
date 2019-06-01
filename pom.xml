@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.borsuki</groupId>
-    <artifactId>linguistic-database-summary</artifactId>
+    <artifactId>linguistic-database-unquantifiedSummary</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>linguistic-database-summary</name>
+    <name>linguistic-database-unquantifiedSummary</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

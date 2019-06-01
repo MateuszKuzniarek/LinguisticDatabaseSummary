@@ -22,7 +22,7 @@ public class DatabaseRepository {
 
             resultSet = statement.executeQuery("SELECT COUNT(*) FROM PLAYERS_INFO");
 
-            result = resultSet.getInt(0);
+            result = resultSet.getInt(1);
             return result;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -33,6 +33,7 @@ public class DatabaseRepository {
         return result;
     }
 
+    //todo is this function even necessary?
     public PlayerInfo getPlayerInfo(Integer id) {
         Connection connection = null;
         Statement statement = null;
@@ -45,7 +46,7 @@ public class DatabaseRepository {
 
             statement = connection.createStatement();
 
-            resultSet = statement.executeQuery("SELECT * FROM PLAYERS_INFO WHERE ID=" + id + ";");
+            resultSet = statement.executeQuery("SELECT * FROM PLAYERS_INFO WHERE ROWID=" + id + ";");
 
             result = new PlayerInfo(new Long(resultSet.getInt("id")),
                     resultSet.getString("player_name"),
@@ -70,11 +71,41 @@ public class DatabaseRepository {
         return result;
     }
 
+    //todo possible SQL injection - fix it
+    public double getPlayerAttribute(Integer id, String attributeName) {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        double result = 0;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/database.sqlite");
+            connection.setAutoCommit(false);
+
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT " + attributeName + " FROM PLAYERS_INFO WHERE ROWID = " + id);
+
+            result = resultSet.getDouble(attributeName);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(resultSet, statement, connection);
+        }
+
+        return result;
+    }
+
     private void closeConnection(ResultSet resultSet, Statement statement, Connection connection) {
         try {
-            resultSet.close();
-            statement.close();
-            connection.close();
+            if (resultSet != null) {
+                resultSet.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
