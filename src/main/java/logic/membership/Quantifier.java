@@ -7,10 +7,13 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public abstract class Quantifier {
+public class Quantifier {
 
-    protected String label;
-    protected MembershipFunction membershipFunction;
+    private String label;
+    private MembershipFunction membershipFunction;
+    private boolean isRelative = true;
 
-    public abstract double getValue(double r);
+    public double getValue(double r) {
+        return membershipFunction.calculateMembership(r);
+    }
 }

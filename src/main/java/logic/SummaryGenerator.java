@@ -4,8 +4,6 @@ import data.XmlLoader;
 import logic.membership.Quantifier;
 import logic.membership.LinguisticVariable;
 import logic.qualitymeasures.QualityMeasure;
-import logic.summaries.CompoundSummarizer;
-import logic.summaries.SimpleSummarizer;
 import logic.summaries.Summarizer;
 import logic.summaries.Summary;
 import lombok.Data;
@@ -36,36 +34,55 @@ public class SummaryGenerator {
     public void addYagerSummaries(String attributeName) {
         for (LinguisticVariable linguisticVariable : linguisticVariables) {
             if (attributeName.equals(linguisticVariable.getAttributeName())) {
-                SimpleSummarizer summarizer = new SimpleSummarizer();
-                summarizer.setLinguisticVariable(linguisticVariable);
+                Summarizer summarizer = new Summarizer();
+                summarizer.andSummarizer(linguisticVariable);
                 for (Quantifier quantifier : quantifiers) {
-                    Summary summary = new Summary();
-                    summary.setSummarizer(summarizer);
-                    summary.setQuantifier(quantifier);
+                    Summary summary = Summary.builder().quantifier(quantifier).summarizer(summarizer).build();
                     summaries.add(summary);
                 }
             }
         }
     }
 
-    public void addCompundSummaries(String firstAttributeName, String secondAttributeName) {
+    public void addCompoundSummaries(String firstAttributeName, String secondAttributeName) {
         for (LinguisticVariable firstLinguisticVariable : linguisticVariables) {
             if (firstAttributeName.equals(firstLinguisticVariable.getAttributeName())) {
                 for(LinguisticVariable secondLinguisticVariable : linguisticVariables) {
                     if(secondAttributeName.equals((secondLinguisticVariable.getAttributeName()))) {
-                        CompoundSummarizer tCompoundSummarizer = new CompoundSummarizer();
-                        tCompoundSummarizer.and(firstLinguisticVariable).and(secondLinguisticVariable);
-                        CompoundSummarizer sCompoundSummarizer = new CompoundSummarizer();
-                        sCompoundSummarizer.or(firstLinguisticVariable).or(secondLinguisticVariable);
+                        Summarizer tCompoundSummarizer = new Summarizer();
+                        tCompoundSummarizer.andSummarizer(firstLinguisticVariable).andSummarizer(secondLinguisticVariable);
                         for (Quantifier quantifier : quantifiers) {
-                            Summary tSummary = new Summary();
-                            Summary sSummary = new Summary();
-                            tSummary.setSummarizer(tCompoundSummarizer);
-                            sSummary.setSummarizer(sCompoundSummarizer);
-                            tSummary.setQuantifier(quantifier);
-                            sSummary.setQuantifier(quantifier);
-                            summaries.add(tSummary);
-                            summaries.add(sSummary);
+                            Summary summary = Summary.builder().quantifier(quantifier).summarizer(tCompoundSummarizer).build();
+                            summaries.add(summary);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //todo think about whether linguistic variables with the same attribute should be in the same compound summarizer
+    public void addSummariesWithQualifier(String firstAttributeName, String secondAttributeName) {
+        List<LinguisticVariable> firstAttributeLinguisticVariables = new ArrayList<>();
+        List<LinguisticVariable> secondAttributeLinguisticVariables = new ArrayList<>();
+        for(LinguisticVariable linguisticVariable : linguisticVariables) {
+            if(firstAttributeName.equals(linguisticVariable.getAttributeName())) {
+                firstAttributeLinguisticVariables.add(linguisticVariable);
+            } else if(secondAttributeName.equals(linguisticVariable.getAttributeName())) {
+                secondAttributeLinguisticVariables.add(linguisticVariable);
+            }
+        }
+
+        for (LinguisticVariable summarizerFirstLinguisticVariable : firstAttributeLinguisticVariables) {
+            for(LinguisticVariable summarizerSecondLinguisticVariable : secondAttributeLinguisticVariables) {
+                for (LinguisticVariable qualifierFirstLinguisticVariable : firstAttributeLinguisticVariables) {
+                    for(LinguisticVariable qualifierSecondLinguisticVariable : secondAttributeLinguisticVariables) {
+                        Summarizer summarizer = new Summarizer();
+                        summarizer.andSummarizer(summarizerFirstLinguisticVariable).andSummarizer(summarizerSecondLinguisticVariable);
+                        summarizer.andQualifier(qualifierFirstLinguisticVariable).andQualifier(qualifierSecondLinguisticVariable);
+                        for (Quantifier quantifier : quantifiers) {
+                            Summary summary = Summary.builder().quantifier(quantifier).summarizer(summarizer).build();
+                            summaries.add(summary);
                         }
                     }
                 }
@@ -75,6 +92,7 @@ public class SummaryGenerator {
 
     public void sortSummariesByQuality() {
         for (Summary summary : summaries) {
+            System.out.println(summary.getSummary());
             for (QualityMeasure qualityMeasure : qualityMeasures) {
                 summary.setQuality(summary.getQuality() + qualityMeasure.getQuality(summary));
             }

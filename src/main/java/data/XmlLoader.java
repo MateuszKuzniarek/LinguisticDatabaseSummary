@@ -1,10 +1,8 @@
 package data;
 
 import exceptions.WrongConfigFileException;
-import logic.membership.AbsoluteQuantifier;
 import logic.membership.MembershipFunction;
 import logic.membership.Quantifier;
-import logic.membership.RelativeQuantifier;
 import logic.membership.LinguisticVariable;
 import logic.membership.TrapezoidFunction;
 import logic.membership.TriangularFunction;
@@ -79,15 +77,13 @@ public class XmlLoader {
 
                 Quantifier quantifier;
 
+                quantifier = new Quantifier();
+                quantifier.setLabel(quantifierElement.getAttribute("name"));
+                quantifier.setMembershipFunction(membershipFunction);
                 if("relative".equals(quantifierType)) {
-                    quantifier = new RelativeQuantifier();
-                    quantifier.setLabel(quantifierElement.getAttribute("name"));
-                    quantifier.setMembershipFunction(membershipFunction);
-                }
-                else if("absolute".equals(quantifierType)) {
-                    quantifier = new AbsoluteQuantifier();
-                    quantifier.setLabel(quantifierElement.getAttribute("name"));
-                    quantifier.setMembershipFunction(membershipFunction);
+                    quantifier.setRelative(true);
+                } else if ("absolute".equals(quantifierType)) {
+                    quantifier.setRelative(false);
                 } else throw new WrongConfigFileException("Unknown quantifier type");
                 result.add(quantifier);
             }

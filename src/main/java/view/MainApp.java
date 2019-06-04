@@ -18,9 +18,10 @@ public class MainApp extends Application {
         SummaryGenerator summaryGenerator = new SummaryGenerator();
         summaryGenerator.addYagerSummaries("weight");
         summaryGenerator.addYagerSummaries("height");
-        summaryGenerator.addCompundSummaries("weight", "height");
+        summaryGenerator.addCompoundSummaries("weight", "height");
+        summaryGenerator.addSummariesWithQualifier("weight", "height");
         summaryGenerator.getQualityMeasures().add(new DegreeOfTruth());
-        summaryGenerator.sortSummariesByQuality();
+        //summaryGenerator.sortSummariesByQuality();
         for(Summary summary : summaryGenerator.getSummaries()) {
             System.out.println(summary.getSummary());
         }
@@ -38,7 +39,7 @@ public class MainApp extends Application {
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
 
 
-        Scene scene = new Scene(rootNode, 500, 500);
+        Scene scene = new Scene(rootNode, 500, 700);
         scene.getStylesheets().add("/styles/styles.css");
 
         stage.setTitle("Linguistic Database Summary");
