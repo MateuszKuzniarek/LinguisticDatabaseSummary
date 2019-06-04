@@ -38,16 +38,26 @@
 		<summarizer type="trapezoid" attribute="shot_power" name="shooting strong" a1="70" b1="75" b2="85" a2="95"/>
 		<summarizer type="trapezoid" attribute="shot_power" name="shooting insanely strong" a1="90" b1="95" b2="100" a2="100"/>
 		
-		<!--<membershipFunction type="trapezoid" atrribute="stamina" name="" a1="" b1="" b2="" a2=""/>
-		<membershipFunction type="trapezoid" atrribute="stamina" name="" a1="" b1="" b2="" a2=""/>
-		<membershipFunction type="trapezoid" atrribute="stamina" name="" a1="" b1="" b2="" a2=""/>
-		<membershipFunction type="trapezoid" atrribute="stamina" name="undying" a1="90" b1="95" b2="100" a2="100"/>
+		<summarizer type="trapezoid" atrribute="stamina" name="quickly exhausting" a1="0" b1="0" b2="45" a2="60"/>
+		<summarizer type="trapezoid" atrribute="stamina" name="durable" a1="55" b1="60" b2="70" a2="80"/>
+		<summarizer type="trapezoid" atrribute="stamina" name="tough" a1="70" b1="80" b2="85" a2="95"/>
+		<summarizer type="trapezoid" atrribute="stamina" name="undying" a1="90" b1="95" b2="100" a2="100"/>
 		
-		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>
-		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>
-		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>
-		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>
-		<membershipFunction type="trapezoid" atrribute="" name="" a1="" b1="" b2="" a2=""/>-->
+		<summarizer type="trapezoid" atrribute="strength" name="weak" a1="0" b1="0" b2="50" a2="60"/>
+		<summarizer type="trapezoid" atrribute="strength" name="moderate strength" a1="55" b1="60" b2="70" a2="75"/>
+		<summarizer type="trapezoid" atrribute="strength" name="strong" a1="70" b1="80" b2="100" a2="100"/>
+		
+		<summarizer type="trapezoid" atrribute="aggression" name="tame" a1="0" b1="0" b2="30" a2="40"/>
+		<summarizer type="trapezoid" atrribute="aggression" name="moderate" a1="30" b1="40" b2="50" a2="60"/>
+		<summarizer type="trapezoid" atrribute="aggression" name="temperamental" a1="55" b1="60" b2="65" a2="70"/>
+		<summarizer type="trapezoid" atrribute="aggression" name="agressive" a1="60" b1="70" b2="80" a2="90"/>
+		<summarizer type="trapezoid" atrribute="aggression" name="brutal" a1="85" b1="90" b2="100" a2="100"/>
+		
+		<summarizer type="trapezoid" atrribute="age" name="teenager" a1="14" b1="16" b2="18" a2="19"/>
+		<summarizer type="trapezoid" atrribute="age" name="young" a1="16" b1="20" b2="26" a2="30"/>
+		<summarizer type="trapezoid" atrribute="age" name="middle age" a1="25" b1="28" b2="32" a2="35"/>
+		<summarizer type="trapezoid" atrribute="age" name="advanced age" a1="30" b1="34" b2="38" a2="40"/>
+		<summarizer type="trapezoid" atrribute="age" name="old" a1="36" b1="40" b2="50" a2="50"/>
 		
     </summarizers>
     <quantifiers>
