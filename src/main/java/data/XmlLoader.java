@@ -5,7 +5,7 @@ import logic.membership.AbsoluteQuantifier;
 import logic.membership.MembershipFunction;
 import logic.membership.Quantifier;
 import logic.membership.RelativeQuantifier;
-import logic.membership.Summarizer;
+import logic.membership.LinguisticVariable;
 import logic.membership.TrapezoidFunction;
 import logic.membership.TriangularFunction;
 import org.w3c.dom.Document;
@@ -24,9 +24,9 @@ import java.util.List;
 
 public class XmlLoader {
 
-    public List<Summarizer> getSummarizers(String path) {
+    public List<LinguisticVariable> getLinguisticVariables(String path) {
 
-        List<Summarizer> result = new ArrayList<>();
+        List<LinguisticVariable> result = new ArrayList<>();
 
         try {
             File fXmlFile = new File(path);
@@ -34,21 +34,21 @@ public class XmlLoader {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document document = dBuilder.parse(fXmlFile);
 
-            NodeList nodeList = ((Element)document.getElementsByTagName("summarizers").item(0))
-                    .getElementsByTagName("summarizer");
+            NodeList nodeList = ((Element)document.getElementsByTagName("linguisticVariables").item(0))
+                    .getElementsByTagName("linguisticVariable");
 
             for (int i=0; i<nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
-                Element summarizerElement = (Element) node;
+                Element linguisticVariableElement = (Element) node;
 
-                MembershipFunction membershipFunction = getMembershipFunction(summarizerElement);
+                MembershipFunction membershipFunction = getMembershipFunction(linguisticVariableElement);
 
 
-                Summarizer summarizer = new Summarizer(summarizerElement.getAttribute("name"),
-                        summarizerElement.getAttribute("attribute"),
-                        membershipFunction
-                );
-                result.add(summarizer);
+                LinguisticVariable linguisticVariable = new LinguisticVariable(
+                        linguisticVariableElement.getAttribute("name"),
+                        linguisticVariableElement.getAttribute("attribute"),
+                        membershipFunction);
+                result.add(linguisticVariable);
             }
         } catch (ParserConfigurationException | WrongConfigFileException | IOException | SAXException e) {
             e.printStackTrace();

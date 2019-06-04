@@ -2,10 +2,12 @@ package logic;
 
 import data.XmlLoader;
 import logic.membership.Quantifier;
-import logic.membership.Summarizer;
+import logic.membership.LinguisticVariable;
 import logic.qualitymeasures.QualityMeasure;
+import logic.summaries.CompoundSummarizer;
+import logic.summaries.SimpleSummarizer;
+import logic.summaries.Summarizer;
 import logic.summaries.Summary;
-import logic.summaries.YagerSummary;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import java.util.List;
 @Data
 public class SummaryGenerator {
     private List<Summary> summaries = new ArrayList<>();
-    private List<Summarizer> summarizers;
+    private List<LinguisticVariable> linguisticVariables;
     private List<Quantifier> quantifiers;
     private List<QualityMeasure> qualityMeasures = new ArrayList<>();
     private static final String defaultXmlPath = "src/main/resources/config.xml";
@@ -27,18 +29,45 @@ public class SummaryGenerator {
 
     public void loadConfigFromXml(String path) {
         XmlLoader xmlLoader = new XmlLoader();
-        summarizers = xmlLoader.getSummarizers(path);
+        linguisticVariables = xmlLoader.getLinguisticVariables(path);
         quantifiers = xmlLoader.getQuantifiers(path);
     }
 
     public void addYagerSummaries(String attributeName) {
-        for (Summarizer summarizer : summarizers) {
-            if (attributeName.equals(summarizer.getAttributeName())) {
+        for (LinguisticVariable linguisticVariable : linguisticVariables) {
+            if (attributeName.equals(linguisticVariable.getAttributeName())) {
+                SimpleSummarizer summarizer = new SimpleSummarizer();
+                summarizer.setLinguisticVariable(linguisticVariable);
                 for (Quantifier quantifier : quantifiers) {
-                    YagerSummary yagerSummary = new YagerSummary();
-                    yagerSummary.setSummarizer(summarizer);
-                    yagerSummary.setQuantifier(quantifier);
-                    summaries.add(yagerSummary);
+                    Summary summary = new Summary();
+                    summary.setSummarizer(summarizer);
+                    summary.setQuantifier(quantifier);
+                    summaries.add(summary);
+                }
+            }
+        }
+    }
+
+    public void addCompundSummaries(String firstAttributeName, String secondAttributeName) {
+        for (LinguisticVariable firstLinguisticVariable : linguisticVariables) {
+            if (firstAttributeName.equals(firstLinguisticVariable.getAttributeName())) {
+                for(LinguisticVariable secondLinguisticVariable : linguisticVariables) {
+                    if(secondAttributeName.equals((secondLinguisticVariable.getAttributeName()))) {
+                        CompoundSummarizer tCompoundSummarizer = new CompoundSummarizer();
+                        tCompoundSummarizer.and(firstLinguisticVariable).and(secondLinguisticVariable);
+                        CompoundSummarizer sCompoundSummarizer = new CompoundSummarizer();
+                        sCompoundSummarizer.or(firstLinguisticVariable).or(secondLinguisticVariable);
+                        for (Quantifier quantifier : quantifiers) {
+                            Summary tSummary = new Summary();
+                            Summary sSummary = new Summary();
+                            tSummary.setSummarizer(tCompoundSummarizer);
+                            sSummary.setSummarizer(sCompoundSummarizer);
+                            tSummary.setQuantifier(quantifier);
+                            sSummary.setQuantifier(quantifier);
+                            summaries.add(tSummary);
+                            summaries.add(sSummary);
+                        }
+                    }
                 }
             }
         }

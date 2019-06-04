@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <config>
-    <summarizers>
-        <summarizer type="trapezoid" attribute="height" name="short" a1="0" b1="0" b2="160" a2="170"/>
-        <summarizer type="trapezoid" attribute="height" name="medium" a1="160" b1="170" b2="180" a2="200"/>
-        <summarizer type="trapezoid" attribute="height" name="tall" a1="180" b1="190" b2="500" a2="500"/>
+    <linguisticVariables>
+        <linguisticVariable type="trapezoid" attribute="height" name="short" a1="0" b1="0" b2="160" a2="170"/>
+        <linguisticVariable type="trapezoid" attribute="height" name="medium height" a1="160" b1="170" b2="180" a2="200"/>
+        <linguisticVariable type="trapezoid" attribute="height" name="tall" a1="180" b1="190" b2="500" a2="500"/>
 
-        <summarizer type="trapezoid" attribute="weight" name="light" a1="0" b1="0" b2="45" a2="65"/>
-        <summarizer type="trapezoid" attribute="weight" name="medium" a1="45" b1="65" b2="80" a2="90"/>
-        <summarizer type="trapezoid" attribute="weight" name="heavy" a1="80" b1="90" b2="500" a2="500"/>
+        <linguisticVariable type="trapezoid" attribute="weight" name="light" a1="0" b1="0" b2="45" a2="65"/>
+        <linguisticVariable type="trapezoid" attribute="weight" name="ordinary weight" a1="45" b1="65" b2="80" a2="90"/>
+        <linguisticVariable type="trapezoid" attribute="weight" name="heavy" a1="80" b1="90" b2="500" a2="500"/>
 
-        <summarizer type="triangular" attribute="overall_rating" name="bad" a1="0" a2="0" a3="45"/>
-        <summarizer type="triangular" attribute="overall_rating" name="mediocre" a1="35" a2="50" a3="65"/>
-        <summarizer type="triangular" attribute="overall_rating" name="good" a1="60" a2="70" a3="90"/>
-        <summarizer type="triangular" attribute="overall_rating" name="great" a1="80" a2="100" a3="100"/>
+        <linguisticVariable type="triangular" attribute="overall_rating" name="bad" a1="0" a2="0" a3="45"/>
+        <linguisticVariable type="triangular" attribute="overall_rating" name="mediocre" a1="35" a2="50" a3="65"/>
+        <linguisticVariable type="triangular" attribute="overall_rating" name="good" a1="60" a2="70" a3="90"/>
+        <linguisticVariable type="triangular" attribute="overall_rating" name="great" a1="80" a2="100" a3="100"/>
 		
-		<summarizer type="trapezoid" attribute="potential" name="small potential" a1="0" b1="0" b2="35" a2="55"/>
-		<summarizer type="trapezoid" attribute="potential" name="medium potential" a1="40" b1="60" b2="70" a2="80"/>
-		<summarizer type="trapezoid" attribute="potential" name="big potential" a1="70" b1="80" b2="100" a2="100"/>
+		<linguisticVariable type="trapezoid" attribute="potential" name="small potential" a1="0" b1="0" b2="35" a2="55"/>
+		<linguisticVariable type="trapezoid" attribute="potential" name="medium potential" a1="40" b1="60" b2="70" a2="80"/>
+		<linguisticVariable type="trapezoid" attribute="potential" name="big potential" a1="70" b1="80" b2="100" a2="100"/>
 		
-		<summarizer type="trapezoid" attribute="acceleration" name="slowly accelerating" a1="0" b1="0" b2="50" a2="60"/>
-		<summarizer type="trapezoid" attribute="acceleration" name="quickly accelerating" a1="50" b1="80" b2="100" a2="100"/>
+		<linguisticVariable type="trapezoid" attribute="acceleration" name="slowly accelerating" a1="0" b1="0" b2="50" a2="60"/>
+		<linguisticVariable type="trapezoid" attribute="acceleration" name="quickly accelerating" a1="50" b1="80" b2="100" a2="100"/>
 		
-		<summarizer type="trapezoid" attribute="sprint_speed" name="very slow" a1="0" b1="0" b2="30" a2="40"/>
-		<summarizer type="trapezoid" attribute="sprint_speed" name="slow" a1="35" b1="40" b2="50" a2="60"/>
-		<summarizer type="trapezoid" attribute="sprint_speed" name="average speed" a1="55" b1="60" b2="70" a2="75"/>
-		<summarizer type="trapezoid" attribute="sprint_speed" name="fast" a1="70" b1="75" b2="80" a2="90"/>
-		<summarizer type="trapezoid" attribute="sprint_speed" name="super fast" a1="85" b1="90" b2="100" a2="100"/>
+		<linguisticVariable type="trapezoid" attribute="sprint_speed" name="very slow" a1="0" b1="0" b2="30" a2="40"/>
+		<linguisticVariable type="trapezoid" attribute="sprint_speed" name="slow" a1="35" b1="40" b2="50" a2="60"/>
+		<linguisticVariable type="trapezoid" attribute="sprint_speed" name="average speed" a1="55" b1="60" b2="70" a2="75"/>
+		<linguisticVariable type="trapezoid" attribute="sprint_speed" name="fast" a1="70" b1="75" b2="80" a2="90"/>
+		<linguisticVariable type="trapezoid" attribute="sprint_speed" name="super fast" a1="85" b1="90" b2="100" a2="100"/>
 		
-		<summarizer type="trapezoid" attribute="agility" name="not dexterous at all" a1="0" b1="0" b2="20" a2="30"/>
-		<summarizer type="trapezoid" attribute="agility" name="not very dexterous" a1="20" b1="40" b2="60" a2="70"/>
-		<summarizer type="trapezoid" attribute="agility" name="dexterous" a1="60" b1="70" b2="80" a2="90"/>
-		<summarizer type="trapezoid" attribute="agility" name="very dexterous" a1="80" b1="90" b2="100" a2="100"/>
+		<linguisticVariable type="trapezoid" attribute="agility" name="not dexterous at all" a1="0" b1="0" b2="20" a2="30"/>
+		<linguisticVariable type="trapezoid" attribute="agility" name="not very dexterous" a1="20" b1="40" b2="60" a2="70"/>
+		<linguisticVariable type="trapezoid" attribute="agility" name="dexterous" a1="60" b1="70" b2="80" a2="90"/>
+		<linguisticVariable type="trapezoid" attribute="agility" name="very dexterous" a1="80" b1="90" b2="100" a2="100"/>
 		
-		<summarizer type="trapezoid" attribute="shot_power" name="shooting faintly" a1="0" b1="0" b2="40" a2="50"/>
-		<summarizer type="trapezoid" attribute="shot_power" name="shooting mediocrely strong" a1="45" b1="55" b2="65" a2="75"/>
-		<summarizer type="trapezoid" attribute="shot_power" name="shooting strong" a1="70" b1="75" b2="85" a2="95"/>
-		<summarizer type="trapezoid" attribute="shot_power" name="shooting insanely strong" a1="90" b1="95" b2="100" a2="100"/>
+		<linguisticVariable type="trapezoid" attribute="shot_power" name="shooting faintly" a1="0" b1="0" b2="40" a2="50"/>
+		<linguisticVariable type="trapezoid" attribute="shot_power" name="shooting mediocrely strong" a1="45" b1="55" b2="65" a2="75"/>
+		<linguisticVariable type="trapezoid" attribute="shot_power" name="shooting strong" a1="70" b1="75" b2="85" a2="95"/>
+		<linguisticVariable type="trapezoid" attribute="shot_power" name="shooting insanely strong" a1="90" b1="95" b2="100" a2="100"/>
 		
-		<summarizer type="trapezoid" atrribute="stamina" name="quickly exhausting" a1="0" b1="0" b2="45" a2="60"/>
-		<summarizer type="trapezoid" atrribute="stamina" name="durable" a1="55" b1="60" b2="70" a2="80"/>
-		<summarizer type="trapezoid" atrribute="stamina" name="tough" a1="70" b1="80" b2="85" a2="95"/>
-		<summarizer type="trapezoid" atrribute="stamina" name="undying" a1="90" b1="95" b2="100" a2="100"/>
+		<linguisticVariable type="trapezoid" atrribute="stamina" name="quickly exhausting" a1="0" b1="0" b2="45" a2="60"/>
+		<linguisticVariable type="trapezoid" atrribute="stamina" name="durable" a1="55" b1="60" b2="70" a2="80"/>
+		<linguisticVariable type="trapezoid" atrribute="stamina" name="tough" a1="70" b1="80" b2="85" a2="95"/>
+		<linguisticVariable type="trapezoid" atrribute="stamina" name="undying" a1="90" b1="95" b2="100" a2="100"/>
 		
-		<summarizer type="trapezoid" atrribute="strength" name="weak" a1="0" b1="0" b2="50" a2="60"/>
-		<summarizer type="trapezoid" atrribute="strength" name="moderate strength" a1="55" b1="60" b2="70" a2="75"/>
-		<summarizer type="trapezoid" atrribute="strength" name="strong" a1="70" b1="80" b2="100" a2="100"/>
+		<linguisticVariable type="trapezoid" atrribute="strength" name="weak" a1="0" b1="0" b2="50" a2="60"/>
+		<linguisticVariable type="trapezoid" atrribute="strength" name="moderate strength" a1="55" b1="60" b2="70" a2="75"/>
+		<linguisticVariable type="trapezoid" atrribute="strength" name="strong" a1="70" b1="80" b2="100" a2="100"/>
 		
-		<summarizer type="trapezoid" atrribute="aggression" name="tame" a1="0" b1="0" b2="30" a2="40"/>
-		<summarizer type="trapezoid" atrribute="aggression" name="moderate" a1="30" b1="40" b2="50" a2="60"/>
-		<summarizer type="trapezoid" atrribute="aggression" name="temperamental" a1="55" b1="60" b2="65" a2="70"/>
-		<summarizer type="trapezoid" atrribute="aggression" name="agressive" a1="60" b1="70" b2="80" a2="90"/>
-		<summarizer type="trapezoid" atrribute="aggression" name="brutal" a1="85" b1="90" b2="100" a2="100"/>
+		<linguisticVariable type="trapezoid" atrribute="aggression" name="tame" a1="0" b1="0" b2="30" a2="40"/>
+		<linguisticVariable type="trapezoid" atrribute="aggression" name="moderate" a1="30" b1="40" b2="50" a2="60"/>
+		<linguisticVariable type="trapezoid" atrribute="aggression" name="temperamental" a1="55" b1="60" b2="65" a2="70"/>
+		<linguisticVariable type="trapezoid" atrribute="aggression" name="agressive" a1="60" b1="70" b2="80" a2="90"/>
+		<linguisticVariable type="trapezoid" atrribute="aggression" name="brutal" a1="85" b1="90" b2="100" a2="100"/>
 		
-		<summarizer type="trapezoid" atrribute="age" name="teenager" a1="14" b1="16" b2="18" a2="19"/>
-		<summarizer type="trapezoid" atrribute="age" name="young" a1="16" b1="20" b2="26" a2="30"/>
-		<summarizer type="trapezoid" atrribute="age" name="middle age" a1="25" b1="28" b2="32" a2="35"/>
-		<summarizer type="trapezoid" atrribute="age" name="advanced age" a1="30" b1="34" b2="38" a2="40"/>
-		<summarizer type="trapezoid" atrribute="age" name="old" a1="36" b1="40" b2="50" a2="50"/>
+		<linguisticVariable type="trapezoid" atrribute="age" name="teenager" a1="14" b1="16" b2="18" a2="19"/>
+		<linguisticVariable type="trapezoid" atrribute="age" name="young" a1="16" b1="20" b2="26" a2="30"/>
+		<linguisticVariable type="trapezoid" atrribute="age" name="middle age" a1="25" b1="28" b2="32" a2="35"/>
+		<linguisticVariable type="trapezoid" atrribute="age" name="advanced age" a1="30" b1="34" b2="38" a2="40"/>
+		<linguisticVariable type="trapezoid" atrribute="age" name="old" a1="36" b1="40" b2="50" a2="50"/>
 		
-    </summarizers>
+    </linguisticVariables>
     <quantifiers>
         <quantifier quantifierType="relative" type="trapezoid" name="minority of" a1="0" b1="0" b2="0.3" a2="0.5"/>
         <quantifier quantifierType="relative" type="trapezoid" name="around half of" a1="0.3" b1="0.4" b2="0.6" a2="0.7"/>

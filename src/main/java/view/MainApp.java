@@ -18,6 +18,7 @@ public class MainApp extends Application {
         SummaryGenerator summaryGenerator = new SummaryGenerator();
         summaryGenerator.addYagerSummaries("weight");
         summaryGenerator.addYagerSummaries("height");
+        summaryGenerator.addCompundSummaries("weight", "height");
         summaryGenerator.getQualityMeasures().add(new DegreeOfTruth());
         summaryGenerator.sortSummariesByQuality();
         for(Summary summary : summaryGenerator.getSummaries()) {

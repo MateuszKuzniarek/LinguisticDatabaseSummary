@@ -1,7 +1,8 @@
 package logic.qualitymeasures;
 
 import data.DatabaseRepository;
-import logic.membership.Summarizer;
+import logic.membership.LinguisticVariable;
+import logic.summaries.Summarizer;
 import logic.summaries.Summary;
 
 import java.util.HashMap;
@@ -23,8 +24,7 @@ public class DegreeOfTruth extends QualityMeasure {
         else {
             int numberOfRecords = databaseRepository.getPlayerCount();
             for (int i = 1; i <= numberOfRecords; i++) {
-                double value = databaseRepository.getPlayerAttribute(i, summary.getSummarizer().getAttributeName());
-                sumOfMembershipValues += summary.getSummarizer().getMembershipFunction().calculateMembership(value);
+                sumOfMembershipValues += summary.getSummarizer().getValue(i);
             }
             summarizersSumOfMembershipValues.put(summary.getSummarizer(), sumOfMembershipValues);
         }

@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Summarizer {
+public class LinguisticVariable {
 
     private String label;
     private String attributeName;
