@@ -5,6 +5,6 @@ public class YagerSummary extends Summary {
 
     @Override
     public String getSummary() {
-        return " players are/have " + getSummarizer().getLabel() + " (" + getQuality() + ")";
+        return getQuantifier().getLabel() + " players are/have " + getSummarizer().getLabel() + " (" + getQuality() + ")";
     }
 }

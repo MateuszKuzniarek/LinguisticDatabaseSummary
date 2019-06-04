@@ -47,8 +47,7 @@ public class SummaryGenerator {
     public void sortSummariesByQuality() {
         for (Summary summary : summaries) {
             for (QualityMeasure qualityMeasure : qualityMeasures) {
-                summary.setQuality(summary.getQuality() + qualityMeasure.getQuality(
-                        summary));
+                summary.setQuality(summary.getQuality() + qualityMeasure.getQuality(summary));
             }
         }
         summaries.sort(Comparator.comparing(Summary::getQuality));
