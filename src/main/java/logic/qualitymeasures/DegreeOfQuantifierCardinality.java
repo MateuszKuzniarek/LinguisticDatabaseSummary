@@ -1,13 +1,13 @@
 package logic.qualitymeasures;
 
-import logic.membership.MembershipFunction;
+import logic.membership.FuzzySet;
 import logic.summaries.Summary;
 
 public class DegreeOfQuantifierCardinality implements QualityMeasure{
 
     @Override
     public double getQuality(Summary summary) {
-        MembershipFunction summaryMembershipFunction = summary.getQuantifier().getMembershipFunction();
-        return 1.0 - summaryMembershipFunction.calculateCardinality()/summaryMembershipFunction.getRealmCardinality();
+        FuzzySet summaryFuzzySet = summary.getQuantifier().getFuzzySet();
+        return 1.0 - summaryFuzzySet.calculateCardinality()/ summaryFuzzySet.getRealmCardinality();
     }
 }

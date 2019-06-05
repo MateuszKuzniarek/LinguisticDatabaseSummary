@@ -1,6 +1,5 @@
 package logic.qualitymeasures;
 
-import data.DatabaseRepository;
 import data.PlayerInfo;
 import logic.membership.LinguisticVariable;
 import logic.summaries.Operation;
@@ -37,7 +36,7 @@ public class DegreeOfAppropriateness implements QualityMeasure{
 
                     LinguisticVariable linguisticVariable = operation.getLinguisticVariable();
                     double attributeValue = playerInfo.getAttributeValue(linguisticVariable.getAttributeName());
-                    double summarizerValue = linguisticVariable.getMembershipFunction().calculateMembership(attributeValue);
+                    double summarizerValue = linguisticVariable.getFuzzySet().calculateMembership(attributeValue);
 
                     if (summarizerValue > 0.0) {
                         sumOfG++;

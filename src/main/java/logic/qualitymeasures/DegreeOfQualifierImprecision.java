@@ -13,7 +13,7 @@ public class DegreeOfQualifierImprecision implements QualityMeasure {
         if(numberOfQualifiers==0) numberOfQualifiers =1;
         double quality = 1;
         for (Operation qualifier : summary.getSummarizer().getQualifierOperations()) {
-            quality *= qualifier.getLinguisticVariable().getMembershipFunction().calculateDegreeOfFuzziness();
+            quality *= qualifier.getLinguisticVariable().getFuzzySet().calculateDegreeOfFuzziness();
         }
         return 1.0 - Math.pow(quality, 1.0 / numberOfQualifiers);
     }

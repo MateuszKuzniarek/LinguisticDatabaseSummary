@@ -1,26 +1,7 @@
 package logic.membership;
 
-import lombok.Getter;
-import lombok.Setter;
-
-//todo this class is suited only for continuous function, it has to be abstract class for both continuous and discrete
-public abstract class MembershipFunction {
-
-    private static final double INTEGRAL_PRECISION = 5000;
-
-    @Getter
-    @Setter
-    private double realmStart;
-
-    @Getter
-    @Setter
-    private double realmEnd;
-
-    public abstract double calculateMembership(double attributeValue);
-
-    protected abstract double getFrom();
-
-    protected abstract double getTo();
+public abstract class ContinuousFuzzySet extends FuzzySet {
+    protected static final double INTEGRAL_PRECISION = 5000;
 
     public double calculateDegreeOfFuzziness() {
         if (realmStart == realmEnd) { return 0; }
@@ -45,7 +26,19 @@ public abstract class MembershipFunction {
         return result;
     }
 
+    public FuzzySet getSupport() {
+        return new TrapezoidFuzzySet(getFrom(), getFrom(), getTo(), getTo());
+
+    }
+
     public double getRealmCardinality() {
         return (realmEnd - realmStart);
+    }
+
+    public double getCharacteristicFunctionValue(double x) {
+        if(x<=getFrom() && x>=getTo()) {
+            return 1;
+        }
+        return 0;
     }
 }

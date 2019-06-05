@@ -1,11 +1,11 @@
 package data;
 
 import exceptions.WrongConfigFileException;
-import logic.membership.MembershipFunction;
+import logic.membership.FuzzySet;
 import logic.membership.Quantifier;
 import logic.membership.LinguisticVariable;
-import logic.membership.TrapezoidFunction;
-import logic.membership.TriangularFunction;
+import logic.membership.TrapezoidFuzzySet;
+import logic.membership.TriangularFuzzySet;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -39,13 +39,13 @@ public class XmlLoader {
                 Node node = nodeList.item(i);
                 Element linguisticVariableElement = (Element) node;
 
-                MembershipFunction membershipFunction = getMembershipFunction(linguisticVariableElement);
+                FuzzySet fuzzySet = getFuzzySet(linguisticVariableElement);
 
 
                 LinguisticVariable linguisticVariable = new LinguisticVariable(
                         linguisticVariableElement.getAttribute("name"),
                         linguisticVariableElement.getAttribute("attribute"),
-                        membershipFunction);
+                        fuzzySet);
                 result.add(linguisticVariable);
             }
         } catch (ParserConfigurationException | WrongConfigFileException | IOException | SAXException e) {
@@ -71,7 +71,7 @@ public class XmlLoader {
                 Node node = nodeList.item(i);
                 Element quantifierElement = (Element) node;
 
-                MembershipFunction membershipFunction = getMembershipFunction(quantifierElement);
+                FuzzySet fuzzySet = getFuzzySet(quantifierElement);
 
                 String quantifierType = quantifierElement.getAttribute("quantifierType");
 
@@ -79,7 +79,7 @@ public class XmlLoader {
 
                 quantifier = new Quantifier();
                 quantifier.setLabel(quantifierElement.getAttribute("name"));
-                quantifier.setMembershipFunction(membershipFunction);
+                quantifier.setFuzzySet(fuzzySet);
                 if("relative".equals(quantifierType)) {
                     quantifier.setRelative(true);
                 } else if ("absolute".equals(quantifierType)) {
@@ -93,29 +93,29 @@ public class XmlLoader {
         return result;
     }
 
-    private MembershipFunction getMembershipFunction(Element membershipFunctionElement)
+    private FuzzySet getFuzzySet(Element fuzzySetElement)
             throws WrongConfigFileException {
-        MembershipFunction membershipFunction;
-        String type = membershipFunctionElement.getAttribute("type");
+        FuzzySet fuzzySet;
+        String type = fuzzySetElement.getAttribute("type");
         if("trapezoid".equals(type)) {
-            membershipFunction = new TrapezoidFunction(
-                    Double.parseDouble(membershipFunctionElement.getAttribute("a1")),
-                    Double.parseDouble(membershipFunctionElement.getAttribute("b1")),
-                    Double.parseDouble(membershipFunctionElement.getAttribute("b2")),
-                    Double.parseDouble(membershipFunctionElement.getAttribute("a2")));
+            fuzzySet = new TrapezoidFuzzySet(
+                    Double.parseDouble(fuzzySetElement.getAttribute("a1")),
+                    Double.parseDouble(fuzzySetElement.getAttribute("b1")),
+                    Double.parseDouble(fuzzySetElement.getAttribute("b2")),
+                    Double.parseDouble(fuzzySetElement.getAttribute("a2")));
         }
         else if("triangular".equals(type)) {
-            membershipFunction = new TriangularFunction(
-                    Double.parseDouble(membershipFunctionElement.getAttribute("a1")),
-                    Double.parseDouble(membershipFunctionElement.getAttribute("a2")),
-                    Double.parseDouble(membershipFunctionElement.getAttribute("a3")));
+            fuzzySet = new TriangularFuzzySet(
+                    Double.parseDouble(fuzzySetElement.getAttribute("a1")),
+                    Double.parseDouble(fuzzySetElement.getAttribute("a2")),
+                    Double.parseDouble(fuzzySetElement.getAttribute("a3")));
         } else throw new WrongConfigFileException("Unknown membership function type");
-        membershipFunction
-                .setRealmStart(Double.parseDouble(membershipFunctionElement.getAttribute("realm-start")));
-        membershipFunction
-                .setRealmEnd(Double.parseDouble(membershipFunctionElement.getAttribute("realm-end")));
+        fuzzySet
+                .setRealmStart(Double.parseDouble(fuzzySetElement.getAttribute("realm-start")));
+        fuzzySet
+                .setRealmEnd(Double.parseDouble(fuzzySetElement.getAttribute("realm-end")));
 
-        return membershipFunction;
+        return fuzzySet;
     }
 
 }

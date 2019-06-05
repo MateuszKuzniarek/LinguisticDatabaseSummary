@@ -46,7 +46,7 @@ public class Summarizer {
 
         LinguisticVariable linguisticVariable = summarizerOperations.get(0).getLinguisticVariable();
         double attributeValue = playerInfo.getAttributeValue(linguisticVariable.getAttributeName());
-        double summarizerValue = linguisticVariable.getMembershipFunction().calculateMembership(attributeValue);
+        double summarizerValue = linguisticVariable.getFuzzySet().calculateMembership(attributeValue);
 
         for (int i = 1; i < summarizerOperations.size(); i++) {
 
@@ -54,7 +54,7 @@ public class Summarizer {
             attributeValue = playerInfo.getAttributeValue(linguisticVariable.getAttributeName());
             summarizerValue = summarizerOperations.get(i).norm.calculateNorm(
                     summarizerValue,
-                    linguisticVariable.getMembershipFunction().calculateMembership(attributeValue));
+                    linguisticVariable.getFuzzySet().calculateMembership(attributeValue));
         }
         double qualifierValue = getQualifierValue(playerInfo);
         return tNorm.calculateNorm(summarizerValue, qualifierValue);
@@ -68,7 +68,7 @@ public class Summarizer {
 
         LinguisticVariable linguisticVariable = qualifierOperations.get(0).getLinguisticVariable();
         double attributeValue = playerInfo.getAttributeValue(linguisticVariable.getAttributeName());
-        double qualifierValue = linguisticVariable.getMembershipFunction().calculateMembership(attributeValue);
+        double qualifierValue = linguisticVariable.getFuzzySet().calculateMembership(attributeValue);
 
         for (int i = 1; i < qualifierOperations.size(); i++) {
 
@@ -76,7 +76,7 @@ public class Summarizer {
             attributeValue = playerInfo.getAttributeValue(linguisticVariable.getAttributeName());
             qualifierValue = summarizerOperations.get(i).norm.calculateNorm(
                     qualifierValue,
-                    linguisticVariable.getMembershipFunction().calculateMembership(attributeValue));
+                    linguisticVariable.getFuzzySet().calculateMembership(attributeValue));
 
         }
         return qualifierValue;

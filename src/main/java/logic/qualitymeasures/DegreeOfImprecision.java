@@ -11,7 +11,7 @@ public class DegreeOfImprecision implements QualityMeasure {
         double quality = 1;
         for (Operation summarizer : summary.getSummarizer().getSummarizerOperations()) {
             numberOfSummarizers++;
-            quality *= summarizer.getLinguisticVariable().getMembershipFunction().calculateDegreeOfFuzziness();
+            quality *= summarizer.getLinguisticVariable().getFuzzySet().calculateDegreeOfFuzziness();
         }
         return 1.0 - Math.pow(quality, 1.0 / numberOfSummarizers);
     }

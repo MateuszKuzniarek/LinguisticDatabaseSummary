@@ -9,5 +9,5 @@ public class LinguisticVariable {
 
     private String label;
     private String attributeName;
-    private MembershipFunction membershipFunction;
+    private FuzzySet fuzzySet;
 }

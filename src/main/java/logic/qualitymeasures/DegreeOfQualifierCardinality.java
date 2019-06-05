@@ -12,8 +12,8 @@ public class DegreeOfQualifierCardinality implements QualityMeasure {
         //because summary without qualifier can be presented as summary with qualifier returning 1 for every record
         if(numberOfQualifiers==0) numberOfQualifiers = 1;
         for (Operation qualifier : summary.getSummarizer().getQualifierOperations()) {
-            double cardinality = qualifier.getLinguisticVariable().getMembershipFunction().calculateCardinality();
-            double realCardinality = qualifier.getLinguisticVariable().getMembershipFunction().getRealmCardinality();
+            double cardinality = qualifier.getLinguisticVariable().getFuzzySet().calculateCardinality();
+            double realCardinality = qualifier.getLinguisticVariable().getFuzzySet().getRealmCardinality();
             quality *= cardinality/realCardinality;
         }
         return 1.0 - Math.pow(quality, 1.0 / numberOfQualifiers);

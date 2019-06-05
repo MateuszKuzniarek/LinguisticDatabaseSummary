@@ -10,8 +10,8 @@ public class DegreeOfSummarizerCardinality implements QualityMeasure {
         double quality = 1;
         double numberOfSummarizers = summary.getSummarizer().getSummarizerOperations().size();
         for (Operation summarizer : summary.getSummarizer().getSummarizerOperations()) {
-            double cardinality = summarizer.getLinguisticVariable().getMembershipFunction().calculateCardinality();
-            double realCardinality = summarizer.getLinguisticVariable().getMembershipFunction().getRealmCardinality();
+            double cardinality = summarizer.getLinguisticVariable().getFuzzySet().calculateCardinality();
+            double realCardinality = summarizer.getLinguisticVariable().getFuzzySet().getRealmCardinality();
             quality *= cardinality/realCardinality;
         }
         return 1.0 - Math.pow(quality, 1.0 / numberOfSummarizers);

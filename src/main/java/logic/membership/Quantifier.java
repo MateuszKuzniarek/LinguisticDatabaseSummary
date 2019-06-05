@@ -10,10 +10,10 @@ import lombok.ToString;
 public class Quantifier {
 
     private String label;
-    private MembershipFunction membershipFunction;
+    private FuzzySet fuzzySet;
     private boolean isRelative = true;
 
     public double getValue(double r) {
-        return membershipFunction.calculateMembership(r);
+        return fuzzySet.calculateMembership(r);
     }
 }
