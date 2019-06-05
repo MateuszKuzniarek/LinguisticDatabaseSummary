@@ -3,23 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.borsuki</groupId>
-    <artifactId>linguistic-database-unquantifiedSummary</artifactId>
+    <artifactId>linguistic-database-summary</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>12</source>
-                    <target>12</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
     <packaging>jar</packaging>
 
-    <name>linguistic-database-unquantifiedSummary</name>
+    <name>linguistic-database-summary</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

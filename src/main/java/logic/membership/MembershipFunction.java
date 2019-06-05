@@ -3,6 +3,7 @@ package logic.membership;
 import lombok.Getter;
 import lombok.Setter;
 
+//todo this class is suited only for continuous function, it has to be abstract class for both continuous and discrete
 public abstract class MembershipFunction {
 
     private static final double INTEGRAL_PRECISION = 5000;
@@ -27,6 +28,11 @@ public abstract class MembershipFunction {
     }
 
     public double calculateSupportCardinality() {
+        double supportWidth = (getTo() - getFrom());
+        return supportWidth;
+    }
+
+    public double calculateCardinality() {
         double result = 0;
         double start = getFrom();
         double end = getTo();
@@ -37,5 +43,9 @@ public abstract class MembershipFunction {
             result += (x1 + x2) / 2 * integralStep;
         }
         return result;
+    }
+
+    public double getRealmCardinality() {
+        return (realmEnd - realmStart);
     }
 }
