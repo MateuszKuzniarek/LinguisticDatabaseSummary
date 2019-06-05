@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.text.DecimalFormat;
+
 @Getter
 @Setter
 @ToString
@@ -17,6 +19,7 @@ public class Summary {
     private Double quality = 0d;
 
     public String getSummary() {
-        return getQuantifier().getLabel() + summarizer.getSummaryFragment() + " (" + getQuality() + ")";
+        DecimalFormat df = new DecimalFormat("#.00");
+        return getQuantifier().getLabel() + summarizer.getSummaryFragment() + " (" + df.format(getQuality()) + ")";
     }
 }

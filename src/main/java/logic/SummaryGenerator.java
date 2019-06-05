@@ -51,9 +51,13 @@ public class SummaryGenerator {
                     if(secondAttributeName.equals((secondLinguisticVariable.getAttributeName()))) {
                         Summarizer tCompoundSummarizer = new Summarizer();
                         tCompoundSummarizer.andSummarizer(firstLinguisticVariable).andSummarizer(secondLinguisticVariable);
+                        Summarizer sCompoundSummarizer = new Summarizer();
+                        sCompoundSummarizer.orSummarizer(firstLinguisticVariable).orSummarizer(secondLinguisticVariable);
                         for (Quantifier quantifier : quantifiers) {
-                            Summary summary = Summary.builder().quantifier(quantifier).summarizer(tCompoundSummarizer).build();
-                            summaries.add(summary);
+                            Summary tSummary = Summary.builder().quantifier(quantifier).summarizer(tCompoundSummarizer).build();
+                            Summary sSummary = Summary.builder().quantifier(quantifier).summarizer(sCompoundSummarizer).build();
+                            summaries.add(tSummary);
+                            summaries.add(sSummary);
                         }
                     }
                 }
