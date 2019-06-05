@@ -1,5 +1,7 @@
 package view;
 
+import data.DatabaseRepository;
+import data.PlayerInfo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +21,8 @@ import logic.qualitymeasures.LengthOfQualifier;
 import logic.qualitymeasures.LengthOfSummary;
 import logic.summaries.Summary;
 
+import java.util.List;
+
 
 public class MainApp extends Application {
 
@@ -30,10 +34,15 @@ public class MainApp extends Application {
         summaryGenerator.addYagerSummaries("height");
         summaryGenerator.addCompoundSummaries("weight", "height");
         summaryGenerator.addSummariesWithQualifier("weight", "height");
-        summaryGenerator.getQualityMeasures().add(new DegreeOfTruth());
+
+        DatabaseRepository databaseRepository = new DatabaseRepository();
+        List<PlayerInfo> playerInfoList = databaseRepository.getAllPlayersInfo();
+        int numberOfRecords = databaseRepository.getPlayerCount();
+
+        summaryGenerator.getQualityMeasures().add(new DegreeOfTruth(playerInfoList, numberOfRecords));
         summaryGenerator.getQualityMeasures().add(new DegreeOfImprecision());
-        summaryGenerator.getQualityMeasures().add(new DegreeOfCovering());
-        summaryGenerator.getQualityMeasures().add(new DegreeOfAppropriateness());
+        summaryGenerator.getQualityMeasures().add(new DegreeOfCovering(playerInfoList, numberOfRecords));
+        summaryGenerator.getQualityMeasures().add(new DegreeOfAppropriateness(playerInfoList, numberOfRecords));
         summaryGenerator.getQualityMeasures().add(new LengthOfSummary());
         summaryGenerator.getQualityMeasures().add(new DegreeOfQuantifierImprecision());
         summaryGenerator.getQualityMeasures().add(new DegreeOfQuantifierCardinality());
@@ -42,7 +51,6 @@ public class MainApp extends Application {
         summaryGenerator.getQualityMeasures().add(new DegreeOfQualifierCardinality());
         summaryGenerator.getQualityMeasures().add(new LengthOfQualifier());
         summaryGenerator.sortSummariesByQuality();
-        System.out.println("--------------------------------------\n\n\n\n\n\n");
         for(Summary summary : summaryGenerator.getSummaries()) {
             System.out.println(summary.getSummary());
         }
@@ -57,8 +65,7 @@ public class MainApp extends Application {
 
         String fxmlFile = "/fxml/scene.fxml";
         FXMLLoader loader = new FXMLLoader();
-        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-
+        Parent rootNode = loader.load(getClass().getResourceAsStream(fxmlFile));
 
         Scene scene = new Scene(rootNode, 500, 700);
         scene.getStylesheets().add("/styles/styles.css");

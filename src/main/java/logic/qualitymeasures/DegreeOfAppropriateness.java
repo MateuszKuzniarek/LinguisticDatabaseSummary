@@ -13,7 +13,13 @@ import java.util.Map;
 
 public class DegreeOfAppropriateness implements QualityMeasure{
 
-    DatabaseRepository databaseRepository = new DatabaseRepository();
+    private List<PlayerInfo> playerInfoList;
+    private int numberOfRecords;
+
+    public DegreeOfAppropriateness(List<PlayerInfo> playerInfoList, int numberOfRecords) {
+        this.playerInfoList = playerInfoList;
+        this.numberOfRecords = numberOfRecords;
+    }
 
     //remembers sums to not calculate them for every quantifier
     private Map<Summarizer, Double> summarizersQualities = new HashMap<>();
@@ -24,9 +30,7 @@ public class DegreeOfAppropriateness implements QualityMeasure{
         if(summarizersQualities.containsKey(summary.getSummarizer())) {
             return summarizersQualities.get(summary.getSummarizer());
         } else {
-            int numberOfRecords = databaseRepository.getPlayerCount();
             double product = 1;
-            List<PlayerInfo> playerInfoList = databaseRepository.getAllPlayersInfo();
             for (Operation operation : summary.getSummarizer().getSummarizerOperations()) {
                 double sumOfG = 0;
                 for (PlayerInfo playerInfo : playerInfoList) {
@@ -41,7 +45,7 @@ public class DegreeOfAppropriateness implements QualityMeasure{
                 }
                 product *= (sumOfG / numberOfRecords);
             }
-            DegreeOfCovering degreeOfCovering = new DegreeOfCovering();
+            DegreeOfCovering degreeOfCovering = new DegreeOfCovering(playerInfoList, numberOfRecords);
             result = Math.abs(product-degreeOfCovering.getQuality(summary));
             summarizersQualities.put(summary.getSummarizer(), result);
         }

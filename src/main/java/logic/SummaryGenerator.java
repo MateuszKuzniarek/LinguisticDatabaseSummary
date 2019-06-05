@@ -61,7 +61,8 @@ public class SummaryGenerator {
         }
     }
 
-    //todo think about whether linguistic variables with the same attribute should be in the same compound summarizer
+    /*
+    //todo this function generated more but summaries didnt make any sense
     public void addSummariesWithQualifier(String firstAttributeName, String secondAttributeName) {
         List<LinguisticVariable> firstAttributeLinguisticVariables = new ArrayList<>();
         List<LinguisticVariable> secondAttributeLinguisticVariables = new ArrayList<>();
@@ -76,13 +77,41 @@ public class SummaryGenerator {
         for (LinguisticVariable summarizerFirstLinguisticVariable : firstAttributeLinguisticVariables) {
             for(LinguisticVariable summarizerSecondLinguisticVariable : secondAttributeLinguisticVariables) {
                 for (LinguisticVariable qualifierFirstLinguisticVariable : firstAttributeLinguisticVariables) {
-                    for(LinguisticVariable qualifierSecondLinguisticVariable : secondAttributeLinguisticVariables) {
+                    if(!qualifierFirstLinguisticVariable.equals(summarizerFirstLinguisticVariable)) {
+                        for(LinguisticVariable qualifierSecondLinguisticVariable : secondAttributeLinguisticVariables) {
+                            if(!qualifierSecondLinguisticVariable.equals(summarizerSecondLinguisticVariable)) {
+                                Summarizer summarizer = new Summarizer();
+                                summarizer.andSummarizer(summarizerFirstLinguisticVariable)
+                                        .andSummarizer(summarizerSecondLinguisticVariable);
+                                summarizer.andQualifier(qualifierFirstLinguisticVariable)
+                                        .andQualifier(qualifierSecondLinguisticVariable);
+                                for (Quantifier quantifier : quantifiers) {
+                                    Summary summary = Summary.builder().quantifier(quantifier).summarizer(summarizer).build();
+                                    summaries.add(summary);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    */
+
+    //todo this function generates summaries with one summarizer and one qualifier - it should generate more?
+    public void addSummariesWithQualifier(String firstAttributeName, String secondAttributeName) {
+        for (LinguisticVariable firstLinguisticVariable : linguisticVariables) {
+            if (firstAttributeName.equals(firstLinguisticVariable.getAttributeName())) {
+                for(LinguisticVariable secondLinguisticVariable : linguisticVariables) {
+                    if(secondAttributeName.equals((secondLinguisticVariable.getAttributeName()))) {
                         Summarizer summarizer = new Summarizer();
-                        summarizer.andSummarizer(summarizerFirstLinguisticVariable).andSummarizer(summarizerSecondLinguisticVariable);
-                        summarizer.andQualifier(qualifierFirstLinguisticVariable).andQualifier(qualifierSecondLinguisticVariable);
+                        summarizer.andSummarizer(firstLinguisticVariable);
+                        summarizer.andQualifier(secondLinguisticVariable);
                         for (Quantifier quantifier : quantifiers) {
-                            Summary summary = Summary.builder().quantifier(quantifier).summarizer(summarizer).build();
-                            summaries.add(summary);
+                            if(quantifier.isRelative()) {
+                                Summary summary = Summary.builder().quantifier(quantifier).summarizer(summarizer).build();
+                                summaries.add(summary);
+                            }
                         }
                     }
                 }
@@ -93,9 +122,10 @@ public class SummaryGenerator {
     public void sortSummariesByQuality() {
         for (Summary summary : summaries) {
             for (QualityMeasure qualityMeasure : qualityMeasures) {
-                summary.setQuality(summary.getQuality() + qualityMeasure.getQuality(summary));
+                double quality = qualityMeasure.getQuality(summary);
+                summary.setQuality(summary.getQuality() + quality);
             }
-            System.out.println(summary.getSummary());
+            //System.out.println(summary.getSummary());
 
         }
         summaries.sort(Comparator.comparing(Summary::getQuality));

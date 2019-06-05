@@ -11,7 +11,13 @@ import java.util.Map;
 
 public class DegreeOfCovering implements QualityMeasure {
 
-    private DatabaseRepository databaseRepository = new DatabaseRepository();
+    private List<PlayerInfo> playerInfoList;
+    private int numberOfRecords;
+
+    public DegreeOfCovering(List<PlayerInfo> playerInfoList, int numberOfRecords) {
+        this.playerInfoList = playerInfoList;
+        this.numberOfRecords = numberOfRecords;
+    }
 
     //remembers sums to not calculate them for every quantifier
     private Map<Summarizer, Double> summarizersQualitites = new HashMap<>();
@@ -23,7 +29,6 @@ public class DegreeOfCovering implements QualityMeasure {
         if(summarizersQualitites.containsKey(summary.getSummarizer())) {
             return summarizersQualitites.get(summary.getSummarizer());
         } else {
-            List<PlayerInfo> playerInfoList = databaseRepository.getAllPlayersInfo();
             for (PlayerInfo playerInfo : playerInfoList) {
                 if (summary.getSummarizer().getSummarizerValue(playerInfo) > 0.0) {
                     sumOfT++;
@@ -31,7 +36,7 @@ public class DegreeOfCovering implements QualityMeasure {
             }
 
             if (summary.getSummarizer().getQualifierOperations().isEmpty()) {
-                sumOfH = databaseRepository.getPlayerCount();
+                sumOfH = numberOfRecords;
             } else {
                 for (PlayerInfo playerInfo : playerInfoList) {
                     if (summary.getSummarizer().getQualifierValue(playerInfo) > 0.0) {
