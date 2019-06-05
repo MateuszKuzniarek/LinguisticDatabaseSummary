@@ -1,6 +1,7 @@
 package logic.summaries;
 
 import data.DatabaseRepository;
+import data.PlayerInfo;
 import logic.membership.LinguisticVariable;
 import logic.norms.MaxSNorm;
 import logic.norms.MinTNorm;
@@ -41,42 +42,41 @@ public class Summarizer {
         return this;
     }
 
-    public double getSummarizerValue(int id) {
-        double attributeValue = databaseRepository.getPlayerAttribute(id,
-                summarizerOperations.get(0).getLinguisticVariable().getAttributeName());
+    public double getSummarizerValue(PlayerInfo playerInfo) {
 
-        double summarizerValue = summarizerOperations.get(0).getLinguisticVariable()
-                .getMembershipFunction().calculateMembership(attributeValue);
+        LinguisticVariable linguisticVariable = summarizerOperations.get(0).getLinguisticVariable();
+        double attributeValue = playerInfo.getAttributeValue(linguisticVariable.getAttributeName());
+        double summarizerValue = linguisticVariable.getMembershipFunction().calculateMembership(attributeValue);
 
         for (int i = 1; i < summarizerOperations.size(); i++) {
 
-            attributeValue = databaseRepository.getPlayerAttribute(id,
-                    summarizerOperations.get(i).getLinguisticVariable().getAttributeName());
-
-            summarizerValue += summarizerOperations.get(i).getLinguisticVariable()
-                    .getMembershipFunction().calculateMembership(attributeValue);
+            linguisticVariable = summarizerOperations.get(0).getLinguisticVariable();
+            attributeValue = playerInfo.getAttributeValue(linguisticVariable.getAttributeName());
+            summarizerValue = summarizerOperations.get(i).norm.calculateNorm(
+                    summarizerValue,
+                    linguisticVariable.getMembershipFunction().calculateMembership(attributeValue));
         }
-        double qualifierValue = getQualifierValue(id);
+        double qualifierValue = getQualifierValue(playerInfo);
         return tNorm.calculateNorm(summarizerValue, qualifierValue);
     }
 
-    public double getQualifierValue(int id) {
+    public double getQualifierValue(PlayerInfo playerInfo) {
         if(qualifierOperations.isEmpty()) {
             return 1;
         }
-        double attributeValue = databaseRepository.getPlayerAttribute(id,
-                qualifierOperations.get(0).getLinguisticVariable().getAttributeName());
 
-        double qualifierValue = qualifierOperations.get(0).getLinguisticVariable()
-                .getMembershipFunction().calculateMembership(attributeValue);
+
+        LinguisticVariable linguisticVariable = qualifierOperations.get(0).getLinguisticVariable();
+        double attributeValue = playerInfo.getAttributeValue(linguisticVariable.getAttributeName());
+        double qualifierValue = linguisticVariable.getMembershipFunction().calculateMembership(attributeValue);
 
         for (int i = 1; i < qualifierOperations.size(); i++) {
 
-            attributeValue = databaseRepository.getPlayerAttribute(id,
-                    qualifierOperations.get(0).getLinguisticVariable().getAttributeName());
-
-            qualifierValue += qualifierOperations.get(0).getLinguisticVariable()
-                    .getMembershipFunction().calculateMembership(attributeValue);
+            linguisticVariable = qualifierOperations.get(0).getLinguisticVariable();
+            attributeValue = playerInfo.getAttributeValue(linguisticVariable.getAttributeName());
+            qualifierValue = summarizerOperations.get(i).norm.calculateNorm(
+                    qualifierValue,
+                    linguisticVariable.getMembershipFunction().calculateMembership(attributeValue));
 
         }
         return qualifierValue;

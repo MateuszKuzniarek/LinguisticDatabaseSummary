@@ -95,7 +95,8 @@ public class SummaryGenerator {
             for (QualityMeasure qualityMeasure : qualityMeasures) {
                 summary.setQuality(summary.getQuality() + qualityMeasure.getQuality(summary));
             }
-            //System.out.println(summary.getSummary());
+            System.out.println(summary.getSummary());
+
         }
         summaries.sort(Comparator.comparing(Summary::getQuality));
         Collections.reverse(summaries);

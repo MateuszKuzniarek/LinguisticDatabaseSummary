@@ -1,10 +1,12 @@
 package logic.qualitymeasures;
 
 import data.DatabaseRepository;
+import data.PlayerInfo;
 import logic.summaries.Summarizer;
 import logic.summaries.Summary;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DegreeOfCovering implements QualityMeasure {
@@ -16,24 +18,24 @@ public class DegreeOfCovering implements QualityMeasure {
 
     @Override
     public double getQuality(Summary summary) {
-        double numberOfRecords = databaseRepository.getPlayerCount();
         double sumOfT = 0;
         double sumOfH = 0;
         if(summarizersQualitites.containsKey(summary.getSummarizer())) {
             return summarizersQualitites.get(summary.getSummarizer());
         } else {
-            for (int i = 1; i <= numberOfRecords; i++) {
-                if (summary.getSummarizer().getSummarizerValue(i) > 0.0) {
+            List<PlayerInfo> playerInfoList = databaseRepository.getAllPlayersInfo();
+            for (PlayerInfo playerInfo : playerInfoList) {
+                if (summary.getSummarizer().getSummarizerValue(playerInfo) > 0.0) {
                     sumOfT++;
                 }
             }
 
             if (summary.getSummarizer().getQualifierOperations().isEmpty()) {
-                sumOfH = numberOfRecords;
+                sumOfH = databaseRepository.getPlayerCount();
             } else {
-                for (int i = 1; i <= numberOfRecords; i++) {
-                    if (summary.getSummarizer().getQualifierValue(i) > 0.0) {
-                        sumOfT++;
+                for (PlayerInfo playerInfo : playerInfoList) {
+                    if (summary.getSummarizer().getQualifierValue(playerInfo) > 0.0) {
+                        sumOfH++;
                     }
                 }
             }

@@ -61,9 +61,9 @@
 		
     </linguisticVariables>
     <quantifiers>
-        <quantifier quantifierType="relative" type="trapezoid" name="minority of" a1="0" b1="0" b2="0.3" a2="0.5" realm-start="0" realm-end="1"/>
+        <quantifier quantifierType="relative" type="trapezoid" name="minority of" a1="0" b1="0" b2="0.1" a2="0.5" realm-start="0" realm-end="1"/>
         <quantifier quantifierType="relative" type="trapezoid" name="around half of" a1="0.3" b1="0.4" b2="0.6" a2="0.7" realm-start="0" realm-end="1"/>
-        <quantifier quantifierType="relative" type="trapezoid" name="majority of" a1="0.5" b1="0.7" b2="1" a2="1" realm-start="0" realm-end="1"/>
+        <quantifier quantifierType="relative" type="trapezoid" name="majority of" a1="0.5" b1="0.9" b2="1" a2="1" realm-start="0" realm-end="1"/>
         <quantifier quantifierType="absolute" type="trapezoid" name="around 5000 of" a1="3000" b1="4500" b2="5500" a2="6000" realm-start="0" realm-end="10935"/>
         <quantifier quantifierType="absolute" type="trapezoid" name="around 7000 of" a1="5000" b1="6500" b2="7500" a2="8000" realm-start="0" realm-end="10935"/>
     </quantifiers>

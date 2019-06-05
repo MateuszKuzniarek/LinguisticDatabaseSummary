@@ -6,11 +6,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import logic.SummaryGenerator;
+import logic.qualitymeasures.DegreeOfAppropriateness;
+import logic.qualitymeasures.DegreeOfCovering;
+import logic.qualitymeasures.DegreeOfImprecision;
 import logic.qualitymeasures.DegreeOfQualifierCardinality;
 import logic.qualitymeasures.DegreeOfQualifierImprecision;
 import logic.qualitymeasures.DegreeOfQuantifierCardinality;
 import logic.qualitymeasures.DegreeOfQuantifierImprecision;
 import logic.qualitymeasures.DegreeOfSummarizerCardinality;
+import logic.qualitymeasures.DegreeOfTruth;
 import logic.qualitymeasures.LengthOfQualifier;
 import logic.qualitymeasures.LengthOfSummary;
 import logic.summaries.Summary;
@@ -26,8 +30,19 @@ public class MainApp extends Application {
         summaryGenerator.addYagerSummaries("height");
         summaryGenerator.addCompoundSummaries("weight", "height");
         summaryGenerator.addSummariesWithQualifier("weight", "height");
+        summaryGenerator.getQualityMeasures().add(new DegreeOfTruth());
+        summaryGenerator.getQualityMeasures().add(new DegreeOfImprecision());
+        summaryGenerator.getQualityMeasures().add(new DegreeOfCovering());
+        summaryGenerator.getQualityMeasures().add(new DegreeOfAppropriateness());
+        summaryGenerator.getQualityMeasures().add(new LengthOfSummary());
+        summaryGenerator.getQualityMeasures().add(new DegreeOfQuantifierImprecision());
+        summaryGenerator.getQualityMeasures().add(new DegreeOfQuantifierCardinality());
+        summaryGenerator.getQualityMeasures().add(new DegreeOfSummarizerCardinality());
+        summaryGenerator.getQualityMeasures().add(new DegreeOfQualifierImprecision());
+        summaryGenerator.getQualityMeasures().add(new DegreeOfQualifierCardinality());
         summaryGenerator.getQualityMeasures().add(new LengthOfQualifier());
         summaryGenerator.sortSummariesByQuality();
+        System.out.println("--------------------------------------\n\n\n\n\n\n");
         for(Summary summary : summaryGenerator.getSummaries()) {
             System.out.println(summary.getSummary());
         }

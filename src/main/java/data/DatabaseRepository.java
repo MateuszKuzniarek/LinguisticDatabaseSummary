@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseRepository {
 
@@ -33,7 +35,6 @@ public class DatabaseRepository {
         return result;
     }
 
-    //todo is this function even necessary?
     public PlayerInfo getPlayerInfo(Integer id) {
         Connection connection = null;
         Statement statement = null;
@@ -48,20 +49,86 @@ public class DatabaseRepository {
 
             resultSet = statement.executeQuery("SELECT * FROM PLAYERS_INFO WHERE ROWID=" + id + ";");
 
-            result = new PlayerInfo(new Long(resultSet.getInt("id")),
+            result = new PlayerInfo(
                     resultSet.getString("player_name"),
                     resultSet.getDouble("height"),
                     resultSet.getDouble("weight"),
-                    resultSet.getInt("overall_rating"),
-                    resultSet.getInt("potential"),
-                    resultSet.getInt("acceleration"),
-                    resultSet.getInt("sprint_speed"),
-                    resultSet.getInt("agility"),
-                    resultSet.getInt("shot_power"),
-                    resultSet.getInt("stamina"),
-                    resultSet.getInt("strength"),
-                    resultSet.getInt("aggression"),
-                    resultSet.getInt("age"));
+                    resultSet.getDouble("overall_rating"),
+                    resultSet.getDouble("potential"),
+                    resultSet.getDouble("acceleration"),
+                    resultSet.getDouble("sprint_speed"),
+                    resultSet.getDouble("agility"),
+                    resultSet.getDouble("shot_power"),
+                    resultSet.getDouble("stamina"),
+                    resultSet.getDouble("strength"),
+                    resultSet.getDouble("aggression"),
+                    resultSet.getDouble("age"));
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(resultSet, statement, connection);
+        }
+
+        return result;
+    }
+
+    public List<PlayerInfo> getAllPlayersInfo() {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        List<PlayerInfo> result = new ArrayList<>();
+        try {
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/database.sqlite");
+            connection.setAutoCommit(false);
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery("SELECT * FROM PLAYERS_INFO");
+
+            while(resultSet.next()) {
+                result.add( new PlayerInfo(
+                        resultSet.getString("player_name"),
+                        resultSet.getDouble("height"),
+                        resultSet.getDouble("weight"),
+                        resultSet.getDouble("overall_rating"),
+                        resultSet.getDouble("potential"),
+                        resultSet.getDouble("acceleration"),
+                        resultSet.getDouble("sprint_speed"),
+                        resultSet.getDouble("agility"),
+                        resultSet.getDouble("shot_power"),
+                        resultSet.getDouble("stamina"),
+                        resultSet.getDouble("strength"),
+                        resultSet.getDouble("aggression"),
+                        resultSet.getDouble("age")));
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(resultSet, statement, connection);
+        }
+
+        return result;
+    }
+
+    //todo possible SQL injection - fix it
+    public List<Double> getAllPlayersAttribute(String attributeName) {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        List<Double> result = new ArrayList<>();
+        try {
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/database.sqlite");
+            connection.setAutoCommit(false);
+
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT " + attributeName + " FROM PLAYERS_INFO");
+
+            while(resultSet.next()) {
+                result.add(resultSet.getDouble(attributeName));
+            }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {

@@ -1,10 +1,13 @@
 package logic.qualitymeasures;
 
 import data.DatabaseRepository;
+import data.PlayerInfo;
 import logic.summaries.Summarizer;
 import logic.summaries.Summary;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DegreeOfTruth implements QualityMeasure {
@@ -20,9 +23,9 @@ public class DegreeOfTruth implements QualityMeasure {
             sumOfMembershipValues = summarizersSumOfMembershipValues.get(summary.getSummarizer());
         }
         else {
-            int numberOfRecords = databaseRepository.getPlayerCount();
-            for (int i = 1; i <= numberOfRecords; i++) {
-                sumOfMembershipValues += summary.getSummarizer().getSummarizerValue(i);
+            List<PlayerInfo> playerInfoList = databaseRepository.getAllPlayersInfo();
+            for (PlayerInfo playerInfo : playerInfoList) {
+                sumOfMembershipValues += summary.getSummarizer().getSummarizerValue(playerInfo);
             }
             summarizersSumOfMembershipValues.put(summary.getSummarizer(), sumOfMembershipValues);
         }
@@ -43,9 +46,9 @@ public class DegreeOfTruth implements QualityMeasure {
             sumOfQualifierValues = summarizersSumOfMembershipValues.get(summary.getQuantifier());
         }
         else {
-            int numberOfRecords = databaseRepository.getPlayerCount();
-            for (int i = 1; i <= numberOfRecords; i++) {
-                sumOfQualifierValues += summary.getSummarizer().getQualifierValue(i);
+            List<PlayerInfo> playerInfoList = databaseRepository.getAllPlayersInfo();
+            for (PlayerInfo playerInfo : playerInfoList) {
+                sumOfQualifierValues += summary.getSummarizer().getQualifierValue(playerInfo);
             }
             summarizersSumOfMembershipValues.put(summary.getSummarizer(), sumOfQualifierValues);
         }
