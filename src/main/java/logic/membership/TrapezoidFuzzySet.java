@@ -23,16 +23,6 @@ public class TrapezoidFuzzySet extends ContinuousFuzzySet {
     }
 
     @Override
-    public double getFrom() {
-        return a1;
-    }
-
-    @Override
-    public double getTo() {
-        return a2;
-    }
-
-    @Override
     public FuzzySet getCore() {
         TrapezoidFuzzySet core = new TrapezoidFuzzySet(b1, b1, b2, b2);
         core.setRealmStart(getRealmStart());
@@ -43,16 +33,5 @@ public class TrapezoidFuzzySet extends ContinuousFuzzySet {
     @Override
     public double getHeight() {
         return 1;
-    }
-
-    @Override
-    public FuzzySet getAlphaCut(double alpha) {
-        if(alpha<0 || alpha>1) return new EmptyContinuousFuzzySet(getRealmStart(), getRealmEnd());
-        double startingX = (alpha/(1 / (b1 - a1))) + a1;
-        double endingX = (alpha/(1 / (b2 - a2))) + a2;
-        TrapezoidFuzzySet alphaCut = new TrapezoidFuzzySet(startingX, startingX, endingX, endingX);
-        alphaCut.setRealmEnd(getRealmEnd());
-        alphaCut.setRealmStart(getRealmStart());
-        return alphaCut;
     }
 }

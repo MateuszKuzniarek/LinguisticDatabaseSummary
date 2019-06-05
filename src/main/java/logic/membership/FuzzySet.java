@@ -6,6 +6,8 @@ import lombok.Setter;
 //todo this class is suited only for continuous function, it has to be abstract class for both continuous and discrete
 public abstract class FuzzySet {
 
+    protected static final double precision = 0.001;
+
     @Getter
     @Setter
     protected double realmStart;
@@ -15,10 +17,6 @@ public abstract class FuzzySet {
     protected double realmEnd;
 
     public abstract double calculateMembership(double attributeValue);
-
-    protected abstract double getFrom();
-
-    protected abstract double getTo();
 
     public abstract double calculateDegreeOfFuzziness();
 
@@ -38,7 +36,5 @@ public abstract class FuzzySet {
 
     public abstract FuzzySet getAlphaCut(double alpha);
 
-    public double getComplementValue(double x) {
-        return 1.0 - calculateMembership(x);
-    }
+    public abstract FuzzySet getComplement();
 }
