@@ -1,8 +1,6 @@
 package logic.summaries;
 
-import jdk.nashorn.internal.objects.annotations.Constructor;
 import logic.membership.Quantifier;
-import logic.membership.LinguisticVariable;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

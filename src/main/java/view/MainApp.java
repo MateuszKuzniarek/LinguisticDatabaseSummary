@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import logic.SummaryGenerator;
+import logic.qualitymeasures.DegreeOfImprecision;
 import logic.qualitymeasures.DegreeOfTruth;
 import logic.summaries.Summary;
 
@@ -19,9 +20,9 @@ public class MainApp extends Application {
         summaryGenerator.addYagerSummaries("weight");
         summaryGenerator.addYagerSummaries("height");
         summaryGenerator.addCompoundSummaries("weight", "height");
-        summaryGenerator.addSummariesWithQualifier("weight", "height");
-        summaryGenerator.getQualityMeasures().add(new DegreeOfTruth());
-        //summaryGenerator.sortSummariesByQuality();
+        //summaryGenerator.addSummariesWithQualifier("weight", "height");
+        summaryGenerator.getQualityMeasures().add(new DegreeOfImprecision());
+        summaryGenerator.sortSummariesByQuality();
         for(Summary summary : summaryGenerator.getSummaries()) {
             System.out.println(summary.getSummary());
         }

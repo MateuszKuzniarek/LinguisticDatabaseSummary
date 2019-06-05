@@ -2,6 +2,6 @@ package logic.qualitymeasures;
 
 import logic.summaries.Summary;
 
-public abstract class QualityMeasure {
-    public abstract double getQuality(Summary summary);
+public interface QualityMeasure {
+    double getQuality(Summary summary);
 }

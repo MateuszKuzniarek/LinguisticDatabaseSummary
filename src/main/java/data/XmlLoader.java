@@ -110,6 +110,11 @@ public class XmlLoader {
                     Double.parseDouble(membershipFunctionElement.getAttribute("a2")),
                     Double.parseDouble(membershipFunctionElement.getAttribute("a3")));
         } else throw new WrongConfigFileException("Unknown membership function type");
+        membershipFunction
+                .setRealmStart(Double.parseDouble(membershipFunctionElement.getAttribute("realm-start")));
+        membershipFunction
+                .setRealmEnd(Double.parseDouble(membershipFunctionElement.getAttribute("realm-end")));
+
         return membershipFunction;
     }
 

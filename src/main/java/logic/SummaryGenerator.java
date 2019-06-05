@@ -25,7 +25,7 @@ public class SummaryGenerator {
         loadConfigFromXml(defaultXmlPath);
     }
 
-    public void loadConfigFromXml(String path) {
+    private void loadConfigFromXml(String path) {
         XmlLoader xmlLoader = new XmlLoader();
         linguisticVariables = xmlLoader.getLinguisticVariables(path);
         quantifiers = xmlLoader.getQuantifiers(path);
@@ -92,10 +92,10 @@ public class SummaryGenerator {
 
     public void sortSummariesByQuality() {
         for (Summary summary : summaries) {
-            System.out.println(summary.getSummary());
             for (QualityMeasure qualityMeasure : qualityMeasures) {
                 summary.setQuality(summary.getQuality() + qualityMeasure.getQuality(summary));
             }
+            //System.out.println(summary.getSummary());
         }
         summaries.sort(Comparator.comparing(Summary::getQuality));
         Collections.reverse(summaries);

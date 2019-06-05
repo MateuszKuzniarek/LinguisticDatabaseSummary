@@ -7,7 +7,7 @@ import logic.summaries.Summary;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DegreeOfTruth extends QualityMeasure {
+public class DegreeOfTruth implements QualityMeasure {
 
     private DatabaseRepository databaseRepository = new DatabaseRepository();
 
