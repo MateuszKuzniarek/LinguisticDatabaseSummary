@@ -1,5 +1,6 @@
 package logic.membership;
 
+import logic.norms.Norm;
 import logic.utils.Point;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,8 +12,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class DiscreteFuzzySet extends FuzzySet {
-
-    private static final double precision = 0.001;
 
     @Setter
     @Getter
@@ -26,16 +25,6 @@ public class DiscreteFuzzySet extends FuzzySet {
             }
         }
         return 0;
-    }
-
-    @Override
-    protected double getFrom() {
-        return membershipValues.stream().min(Comparator.comparing(Point::getX)).get().getX();
-    }
-
-    @Override
-    protected double getTo() {
-        return membershipValues.stream().max(Comparator.comparing(Point::getX)).get().getX();
     }
 
     @Override
@@ -71,6 +60,8 @@ public class DiscreteFuzzySet extends FuzzySet {
                 support.getMembershipValues().add(point);
             }
         }
+        support.setRealmStart(getRealmStart());
+        support.setRealmEnd(getRealmEnd());
         return support;
     }
 
@@ -88,6 +79,8 @@ public class DiscreteFuzzySet extends FuzzySet {
                 Collectors.toList());
         DiscreteFuzzySet core = new DiscreteFuzzySet();
         core.setMembershipValues(corePoints);
+        core.setRealmStart(getRealmStart());
+        core.setRealmEnd(getRealmEnd());
         return core;
     }
 
@@ -102,6 +95,40 @@ public class DiscreteFuzzySet extends FuzzySet {
                 Collectors.toList());
         DiscreteFuzzySet alphaCut = new DiscreteFuzzySet();
         alphaCut.setMembershipValues(alphaCutPoints);
+        alphaCut.setRealmStart(getRealmStart());
+        alphaCut.setRealmEnd(getRealmEnd());
         return alphaCut;
+    }
+
+    //todo how does complement of discrete set even look like? think about it
+    @Override
+    public FuzzySet getComplement() {
+        List<Point> complementPoints = new ArrayList<>();
+        for(Point point : membershipValues) {
+            Point newPoint = new Point();
+            newPoint.setX(point.getX());
+            newPoint.setY(1.0-point.getY());
+        }
+        DiscreteFuzzySet complement = new DiscreteFuzzySet();
+        complement.setMembershipValues(complementPoints);
+        complement.setRealmStart(getRealmStart());
+        complement.setRealmEnd(getRealmEnd());
+        return complement;
+    }
+
+    @Override
+    public FuzzySet combine(Norm norm, FuzzySet fuzzySet) {
+
+        List<Point> combinedPoints = new ArrayList<>();
+        for(Point point : membershipValues) {
+            Point newPoint = new Point();
+            newPoint.setX(point.getX());
+            newPoint.setY(norm.calculateNorm(point.getY(), fuzzySet.calculateMembership(point.getX())));
+        }
+        DiscreteFuzzySet combinedSet = new DiscreteFuzzySet();
+        combinedSet.setMembershipValues(combinedPoints);
+        combinedSet.setRealmStart(getRealmStart());
+        combinedSet.setRealmEnd(getRealmEnd());
+        return combinedSet;
     }
 }
