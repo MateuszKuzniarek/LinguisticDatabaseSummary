@@ -1,5 +1,7 @@
 package logic.membership;
 
+import logic.norms.Norm;
+
 public abstract class ContinuousFuzzySet extends FuzzySet {
     protected static final double INTEGRAL_PRECISION = 5000;
 
@@ -118,6 +120,24 @@ public abstract class ContinuousFuzzySet extends FuzzySet {
         complement.setRealmStart(getRealmStart());
         complement.setRealmEnd(getRealmEnd());
         return complement;
+    }
 
+    @Override
+    public FuzzySet combine(Norm norm, FuzzySet fuzzySet) {
+        FuzzySet thisFuzzySet = this;
+        ContinuousFuzzySet combinedSet = new ContinuousFuzzySet() {
+
+            private FuzzySet firstFuzzySet = thisFuzzySet;
+            private FuzzySet secondFuzzySet = fuzzySet;
+
+            @Override
+            public double calculateMembership(double attributeValue) {
+                return norm.calculateNorm(firstFuzzySet.calculateMembership(attributeValue),
+                        secondFuzzySet.calculateMembership(attributeValue));
+            }
+        };
+        combinedSet.setRealmStart(getRealmStart());
+        combinedSet.setRealmEnd(getRealmEnd());
+        return combinedSet;
     }
 }

@@ -1,5 +1,6 @@
 package logic.membership;
 
+import logic.norms.Norm;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,4 +38,6 @@ public abstract class FuzzySet {
     public abstract FuzzySet getAlphaCut(double alpha);
 
     public abstract FuzzySet getComplement();
+
+    public abstract FuzzySet combine(Norm norm, FuzzySet fuzzySet);
 }

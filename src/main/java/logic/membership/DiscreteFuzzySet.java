@@ -1,5 +1,6 @@
 package logic.membership;
 
+import logic.norms.Norm;
 import logic.utils.Point;
 import lombok.Getter;
 import lombok.Setter;
@@ -113,5 +114,21 @@ public class DiscreteFuzzySet extends FuzzySet {
         complement.setRealmStart(getRealmStart());
         complement.setRealmEnd(getRealmEnd());
         return complement;
+    }
+
+    @Override
+    public FuzzySet combine(Norm norm, FuzzySet fuzzySet) {
+
+        List<Point> combinedPoints = new ArrayList<>();
+        for(Point point : membershipValues) {
+            Point newPoint = new Point();
+            newPoint.setX(point.getX());
+            newPoint.setY(norm.calculateNorm(point.getY(), fuzzySet.calculateMembership(point.getX())));
+        }
+        DiscreteFuzzySet combinedSet = new DiscreteFuzzySet();
+        combinedSet.setMembershipValues(combinedPoints);
+        combinedSet.setRealmStart(getRealmStart());
+        combinedSet.setRealmEnd(getRealmEnd());
+        return combinedSet;
     }
 }
