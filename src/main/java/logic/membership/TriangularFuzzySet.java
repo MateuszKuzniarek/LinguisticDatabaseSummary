@@ -8,4 +8,14 @@ public class TriangularFuzzySet extends TrapezoidFuzzySet {
         setB1(b);
         setB2(b);
     }
+
+    @Override
+    public String getFunctionType() {
+        return "triangular";
+    }
+
+    @Override
+    public String getDefinition() {
+        return "a1 = " + getA1() + " a2 = " + getA2() + " a3 = " + getB1();
+    }
 }

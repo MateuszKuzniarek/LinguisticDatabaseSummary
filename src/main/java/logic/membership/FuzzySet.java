@@ -4,7 +4,6 @@ import logic.norms.Norm;
 import lombok.Getter;
 import lombok.Setter;
 
-//todo this class is suited only for continuous function, it has to be abstract class for both continuous and discrete
 public abstract class FuzzySet {
 
     protected static final double precision = 0.001;
@@ -29,8 +28,6 @@ public abstract class FuzzySet {
 
     public abstract FuzzySet getSupport();
 
-    public abstract double getCharacteristicFunctionValue(double x);
-
     public abstract FuzzySet getCore();
 
     public abstract double getHeight();
@@ -40,4 +37,8 @@ public abstract class FuzzySet {
     public abstract FuzzySet getComplement();
 
     public abstract FuzzySet combine(Norm norm, FuzzySet fuzzySet);
+
+    public abstract String getFunctionType();
+
+    public abstract String getDefinition();
 }

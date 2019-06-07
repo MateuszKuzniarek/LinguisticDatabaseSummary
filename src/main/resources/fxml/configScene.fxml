@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<TabPane prefHeight="500.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ConfigViewController">
+  <tabs>
+    <Tab text="Sumaryzatory">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="343.0" prefWidth="800.0">
+               <children>
+                  <GridPane prefHeight="475.0" prefWidth="800.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="439.7999633789062" minHeight="10.0" prefHeight="420.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="232.60001220703126" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TableView fx:id="summarizersTableView" prefHeight="421.0" prefWidth="700.0">
+                          <columns>
+                            <TableColumn fx:id="summarizerNameColumn" prefWidth="122.3999924659729" text="Nazwa" />
+                            <TableColumn fx:id="summarizerAttributeColumn" minWidth="0.0" prefWidth="107.20001220703125" text="Atrybut" />
+                              <TableColumn fx:id="summarizerFunctionTypeColumn" prefWidth="223.199951171875" text="Typ funkcji przynależności" />
+                              <TableColumn fx:id="summarizerDefinitionColumn" prefWidth="324.7999267578125" text="opis" />
+                          </columns>
+                        </TableView>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <children>
+                              <Button layoutX="378.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteSummarizer" text="Usuń" />
+                              <Button layoutX="307.0" layoutY="17.0" mnemonicParsing="false" onAction="#addSummarizer" text="Dodaj" />
+                              <Button layoutX="440.0" layoutY="17.0" mnemonicParsing="false" onAction="#close" text="Zamknij" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Kwantyzatory">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="781.0">
+               <children>
+                  <GridPane prefHeight="475.0" prefWidth="800.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="439.7999633789062" minHeight="10.0" prefHeight="420.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="232.60001220703126" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <TableView fx:id="quantifiersTableView" prefHeight="410.0" prefWidth="700.0">
+                           <columns>
+                              <TableColumn fx:id="quantifierNameColumn" prefWidth="104.0" text="Nazwa" />
+                              <TableColumn fx:id="quantifierFunctionTypeColumn" prefWidth="253.60003662109375" text="Typ funkcji przynależności" />
+                              <TableColumn fx:id="quantifierIsRelativeColumn" prefWidth="91.99993896484375" text="Względność" />
+                              <TableColumn fx:id="quantifierDefinitionColumn" prefWidth="327.2000732421875" text="opis" />
+                           </columns>
+                        </TableView>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <children>
+                              <Button layoutX="378.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteQuantifier" text="Usuń" />
+                              <Button layoutX="307.0" layoutY="17.0" mnemonicParsing="false" onAction="#addQuantifier" text="Dodaj" />
+                              <Button layoutX="440.0" layoutY="17.0" mnemonicParsing="false" onAction="#close" text="Zamknij" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

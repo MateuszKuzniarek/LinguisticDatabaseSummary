@@ -74,10 +74,9 @@ public class Summarizer {
 
             linguisticVariable = qualifierOperations.get(0).getLinguisticVariable();
             attributeValue = playerInfo.getAttributeValue(linguisticVariable.getAttributeName());
-            qualifierValue = summarizerOperations.get(i).norm.calculateNorm(
+            qualifierValue = qualifierOperations.get(i).norm.calculateNorm(
                     qualifierValue,
                     linguisticVariable.getFuzzySet().calculateMembership(attributeValue));
-
         }
         return qualifierValue;
     }

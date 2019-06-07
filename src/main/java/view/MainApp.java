@@ -42,7 +42,7 @@ public class MainApp extends Application {
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = loader.load(getClass().getResourceAsStream(fxmlFile));
 
-        Scene scene = new Scene(rootNode, 500, 700);
+        Scene scene = new Scene(rootNode, 700, 700);
         scene.getStylesheets().add("/styles/styles.css");
 
         stage.setTitle("Linguistic Database Summary");

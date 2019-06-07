@@ -66,14 +66,6 @@ public class DiscreteFuzzySet extends FuzzySet {
     }
 
     @Override
-    public double getCharacteristicFunctionValue(double x) {
-        if(membershipValues.stream().anyMatch(p -> Objects.equals(p.getX(), x))) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
     public FuzzySet getCore() {
         List<Point> corePoints = membershipValues.stream().filter(p -> Math.abs(p.getY()-1.0)<precision).collect(
                 Collectors.toList());
@@ -130,5 +122,15 @@ public class DiscreteFuzzySet extends FuzzySet {
         combinedSet.setRealmStart(getRealmStart());
         combinedSet.setRealmEnd(getRealmEnd());
         return combinedSet;
+    }
+
+    @Override
+    public String getFunctionType() {
+        return "discrete";
+    }
+
+    @Override
+    public String getDefinition() {
+        return membershipValues.toString();
     }
 }

@@ -34,4 +34,14 @@ public class TrapezoidFuzzySet extends ContinuousFuzzySet {
     public double getHeight() {
         return 1;
     }
+
+    @Override
+    public String getFunctionType() {
+        return "trapezoid";
+    }
+
+    @Override
+    public String getDefinition() {
+        return "a1 = " + a1 + " b1 = " + b1 + " b2 = " + b2 + " a2 = " + a2;
+    }
 }

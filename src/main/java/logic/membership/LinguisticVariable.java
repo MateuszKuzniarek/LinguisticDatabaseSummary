@@ -10,4 +10,9 @@ public class LinguisticVariable {
     private String label;
     private String attributeName;
     private FuzzySet fuzzySet;
+
+    @Override
+    public String toString() {
+        return label;
+    }
 }

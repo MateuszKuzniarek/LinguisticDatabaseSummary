@@ -31,96 +31,93 @@ public class SummaryGenerator {
         quantifiers = xmlLoader.getQuantifiers(path);
     }
 
-    public void addYagerSummaries(String attributeName) {
-        for (LinguisticVariable linguisticVariable : linguisticVariables) {
-            if (attributeName.equals(linguisticVariable.getAttributeName())) {
-                Summarizer summarizer = new Summarizer();
-                summarizer.andSummarizer(linguisticVariable);
-                for (Quantifier quantifier : quantifiers) {
-                    Summary summary = Summary.builder().quantifier(quantifier).summarizer(summarizer).build();
-                    summaries.add(summary);
-                }
+    private List<Summary> getYagerSummaries(LinguisticVariable linguisticVariable) {
+        List<Summary> result = new ArrayList<>();
+        for (Quantifier quantifier : quantifiers) {
+            Summarizer summarizer = new Summarizer();
+            summarizer.andSummarizer(linguisticVariable);
+            Summary summary = Summary.builder().quantifier(quantifier).summarizer(summarizer).build();
+            result.add(summary);
+        }
+        return result;
+    }
+
+    private List<Summary> getCompoundSummaries(LinguisticVariable firstLinguisticVariable, LinguisticVariable secondLinguisticVariable) {
+        List<Summary> result = new ArrayList<>();
+        for (Quantifier quantifier : quantifiers) {
+            Summarizer tCompoundSummarizer = new Summarizer();
+            tCompoundSummarizer.andSummarizer(firstLinguisticVariable).andSummarizer(secondLinguisticVariable);
+            Summarizer sCompoundSummarizer = new Summarizer();
+            sCompoundSummarizer.orSummarizer(firstLinguisticVariable).orSummarizer(secondLinguisticVariable);
+            Summary tSummary = Summary.builder().quantifier(quantifier).summarizer(tCompoundSummarizer).build();
+            Summary sSummary = Summary.builder().quantifier(quantifier).summarizer(sCompoundSummarizer).build();
+            result.add(tSummary);
+            result.add(sSummary);
+        }
+        return result;
+    }
+
+    private List<Summary> getYagerAndCompoundSummaries(LinguisticVariable firstLinguisticVariable, LinguisticVariable secondLinguisticVariable) {
+        List<Summary> result;
+        result = getYagerSummaries(firstLinguisticVariable);
+        result.addAll(getYagerSummaries(secondLinguisticVariable));
+        result.addAll(getCompoundSummaries(firstLinguisticVariable, secondLinguisticVariable));
+        return result;
+    }
+
+    public void addYagerSummaries(LinguisticVariable linguisticVariable) {
+        summaries.addAll(getYagerSummaries(linguisticVariable));
+    }
+
+    public void addCompoundSummaries(LinguisticVariable firstLinguisticVariable, LinguisticVariable secondLinguisticVariable) {
+        summaries.addAll(getCompoundSummaries(firstLinguisticVariable, secondLinguisticVariable));
+    }
+
+    public void addSummariesWithQualifier(LinguisticVariable firstSummarizer, LinguisticVariable secondSummarizer,
+            LinguisticVariable firstQualifier, LinguisticVariable secondQualifier) {
+
+        //first qualifier
+        List<Summary> newSummaries = getYagerAndCompoundSummaries(firstSummarizer, secondSummarizer);
+        if(firstQualifier!=null) {
+            for (Summary summary : newSummaries) {
+                summary.getSummarizer().andQualifier(firstQualifier);
             }
+            summaries.addAll(newSummaries);
+        }
+
+        //second qualifier
+        if(secondQualifier!=null) {
+            newSummaries = getYagerAndCompoundSummaries(firstSummarizer, secondSummarizer);
+            for(Summary summary : newSummaries) {
+                summary.getSummarizer().andQualifier(secondQualifier);
+            }
+            summaries.addAll(newSummaries);
+        }
+
+        //both qualifiers
+        if(firstQualifier!=null && secondQualifier!=null) {
+            newSummaries = getYagerAndCompoundSummaries(firstSummarizer, secondSummarizer);
+            for(Summary summary : newSummaries) {
+                summary.getSummarizer().andQualifier(firstQualifier).andQualifier(secondQualifier);
+            }
+            summaries.addAll(newSummaries);
+
+            newSummaries = getYagerAndCompoundSummaries(firstSummarizer, secondSummarizer);
+            for(Summary summary : newSummaries) {
+                summary.getSummarizer().orQualifier(firstQualifier).orQualifier(secondQualifier);
+            }
+            summaries.addAll(newSummaries);
         }
     }
 
-    public void addCompoundSummaries(String firstAttributeName, String secondAttributeName) {
-        for (LinguisticVariable firstLinguisticVariable : linguisticVariables) {
-            if (firstAttributeName.equals(firstLinguisticVariable.getAttributeName())) {
-                for(LinguisticVariable secondLinguisticVariable : linguisticVariables) {
-                    if(secondAttributeName.equals((secondLinguisticVariable.getAttributeName()))) {
-                        Summarizer tCompoundSummarizer = new Summarizer();
-                        tCompoundSummarizer.andSummarizer(firstLinguisticVariable).andSummarizer(secondLinguisticVariable);
-                        Summarizer sCompoundSummarizer = new Summarizer();
-                        sCompoundSummarizer.orSummarizer(firstLinguisticVariable).orSummarizer(secondLinguisticVariable);
-                        for (Quantifier quantifier : quantifiers) {
-                            Summary tSummary = Summary.builder().quantifier(quantifier).summarizer(tCompoundSummarizer).build();
-                            Summary sSummary = Summary.builder().quantifier(quantifier).summarizer(sCompoundSummarizer).build();
-                            summaries.add(tSummary);
-                            summaries.add(sSummary);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /*
-    //todo this function generated more but summaries didnt make any sense
-    public void addSummariesWithQualifier(String firstAttributeName, String secondAttributeName) {
-        List<LinguisticVariable> firstAttributeLinguisticVariables = new ArrayList<>();
-        List<LinguisticVariable> secondAttributeLinguisticVariables = new ArrayList<>();
+    public List<LinguisticVariable> getLinguisticVariablesByAttributeName(String attributeName) {
+        List<LinguisticVariable> result = new ArrayList<>();
         for(LinguisticVariable linguisticVariable : linguisticVariables) {
-            if(firstAttributeName.equals(linguisticVariable.getAttributeName())) {
-                firstAttributeLinguisticVariables.add(linguisticVariable);
-            } else if(secondAttributeName.equals(linguisticVariable.getAttributeName())) {
-                secondAttributeLinguisticVariables.add(linguisticVariable);
+            if(attributeName.equals(linguisticVariable.getAttributeName())) {
+                result.add(linguisticVariable);
             }
         }
-
-        for (LinguisticVariable summarizerFirstLinguisticVariable : firstAttributeLinguisticVariables) {
-            for(LinguisticVariable summarizerSecondLinguisticVariable : secondAttributeLinguisticVariables) {
-                for (LinguisticVariable qualifierFirstLinguisticVariable : firstAttributeLinguisticVariables) {
-                    if(!qualifierFirstLinguisticVariable.equals(summarizerFirstLinguisticVariable)) {
-                        for(LinguisticVariable qualifierSecondLinguisticVariable : secondAttributeLinguisticVariables) {
-                            if(!qualifierSecondLinguisticVariable.equals(summarizerSecondLinguisticVariable)) {
-                                Summarizer summarizer = new Summarizer();
-                                summarizer.andSummarizer(summarizerFirstLinguisticVariable)
-                                        .andSummarizer(summarizerSecondLinguisticVariable);
-                                summarizer.andQualifier(qualifierFirstLinguisticVariable)
-                                        .andQualifier(qualifierSecondLinguisticVariable);
-                                for (Quantifier quantifier : quantifiers) {
-                                    Summary summary = Summary.builder().quantifier(quantifier).summarizer(summarizer).build();
-                                    summaries.add(summary);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    */
-
-    //todo this function generates summaries with one summarizer and one qualifier - it should generate more?
-    public void addSummariesWithQualifier(String firstAttributeName, String secondAttributeName) {
-        for (LinguisticVariable firstLinguisticVariable : linguisticVariables) {
-            if (firstAttributeName.equals(firstLinguisticVariable.getAttributeName())) {
-                for(LinguisticVariable secondLinguisticVariable : linguisticVariables) {
-                    if(secondAttributeName.equals((secondLinguisticVariable.getAttributeName()))) {
-                        Summarizer summarizer = new Summarizer();
-                        summarizer.andSummarizer(firstLinguisticVariable);
-                        summarizer.andQualifier(secondLinguisticVariable);
-                        for (Quantifier quantifier : quantifiers) {
-                            if(quantifier.isRelative()) {
-                                Summary summary = Summary.builder().quantifier(quantifier).summarizer(summarizer).build();
-                                summaries.add(summary);
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        return result;
     }
 
     public void sortSummariesByQuality() {
@@ -134,5 +131,9 @@ public class SummaryGenerator {
         }
         summaries.sort(Comparator.comparing(Summary::getQuality));
         Collections.reverse(summaries);
+    }
+
+    public void clearSummaries() {
+        summaries.clear();
     }
 }

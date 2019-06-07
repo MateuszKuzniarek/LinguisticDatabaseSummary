@@ -10,50 +10,49 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="699.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewController">
+<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="699.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="400.0" minHeight="0.0" prefHeight="291.20001220703125" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="173.5999816894531" minHeight="0.0" prefHeight="44.60000000000002" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="329.60003662109375" minHeight="0.0" prefHeight="313.4" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="400.0" minHeight="0.0" prefHeight="353.40000610351564" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="173.5999816894531" minHeight="0.0" prefHeight="34.99999389648434" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="329.60003662109375" minHeight="0.0" prefHeight="260.8000122070313" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <GridPane>
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="345.20001220703125" minWidth="10.0" prefWidth="262.79998779296875" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="459.5999755859375" minWidth="10.0" prefWidth="437.20001220703125" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="62.399993896484375" minHeight="40.0" prefHeight="62.399993896484375" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="112.79998779296875" minHeight="57.20000610351562" prefHeight="79.99999389648437" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="95.20001220703125" minHeight="7.20001220703125" prefHeight="59.400000000000006" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="140.8000030517578" minHeight="19.999996185302734" prefHeight="38.00000610351563" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="140.8000030517578" minHeight="19.999996185302734" prefHeight="40.399993896484375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="140.8000030517578" minHeight="19.999996185302734" prefHeight="46.39998779296876" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="177.60000381469726" minHeight="40.0" prefHeight="77.60001220703126" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="164.79998474121092" minHeight="54.3999908447266" prefHeight="70.3999908447266" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="95.20001220703125" minHeight="7.20001220703125" prefHeight="44.00001525878906" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Przeglądaj" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <ComboBox fx:id="attribute1ComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <ComboBox fx:id="attribute2ComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-            <Label text="Plik z definicją podsumowania" GridPane.rowIndex="2">
+            <Label text="Konfiguracja" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin></Label>
-            <Label text="Miara jakości podsumowań" GridPane.rowIndex="3">
+            <Label text="Miara jakości podsumowań" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin></Label>
-            <Label text="Atrubut 2." GridPane.rowIndex="1">
+            <Label text="Sumaryzator 2." GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin></Label>
-            <Label text="Atrybut 1.">
+            <Label text="Sumaryzator 1.">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin></Label>
-            <GridPane fx:id="qualityMeasuresGridPane" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <GridPane fx:id="qualityMeasuresGridPane" GridPane.columnIndex="1" GridPane.rowIndex="5">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -79,12 +78,12 @@
                   <CheckBox fx:id="t8" mnemonicParsing="false" selected="true" text="T8" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Label text="Forma podsumowania" GridPane.rowIndex="4">
+            <Label text="Forma podsumowania" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
             </Label>
-            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="6">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -98,6 +97,81 @@
                   <CheckBox fx:id="yCheckBox" mnemonicParsing="false" selected="true" text="Y" GridPane.halignment="LEFT" />
                   <CheckBox fx:id="gCheckBox" mnemonicParsing="false" selected="true" text="G" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
                   <CheckBox fx:id="kCheckBox" mnemonicParsing="false" selected="true" text="K" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ComboBox fx:id="summarizer1ComboBox" prefHeight="26.0" prefWidth="200.0" GridPane.halignment="CENTER" />
+                  <ComboBox fx:id="summarizer1FuzzySetComboBox" prefHeight="26.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ComboBox fx:id="summarizer2ComboBox" prefWidth="200.0" GridPane.halignment="CENTER" />
+                  <ComboBox fx:id="summarizer2FuzzySetComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ComboBox fx:id="qualifier1ComboBox" prefHeight="26.0" prefWidth="200.0" GridPane.halignment="CENTER" />
+                  <ComboBox fx:id="qualifier1FuzzySetComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ComboBox fx:id="qualifier2ComboBox" prefWidth="200.0" GridPane.halignment="CENTER" />
+                  <ComboBox fx:id="qualifier2FuzzySetComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+               </children>
+            </GridPane>
+            <Label text="Kwalifikator 1." GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Kwalifikator 2." GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Label>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#openConfiguration" prefHeight="26.0" prefWidth="200.0" text="Zmień zbiory rozmyte" GridPane.halignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#resetChanges" prefHeight="26.0" prefWidth="200.0" text="Resetuj zmiany" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                </children>
             </GridPane>
          </children>

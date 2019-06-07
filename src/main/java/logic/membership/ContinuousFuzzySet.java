@@ -48,13 +48,6 @@ public abstract class ContinuousFuzzySet extends FuzzySet {
         return (realmEnd - realmStart);
     }
 
-    public double getCharacteristicFunctionValue(double x) {
-        if(calculateMembership(x)>0.0) {
-            return 1;
-        }
-        else return 0;
-    }
-
     @Override
     public FuzzySet getCore() {
         FuzzySet thisFuzzySet = this;
@@ -139,5 +132,15 @@ public abstract class ContinuousFuzzySet extends FuzzySet {
         combinedSet.setRealmStart(getRealmStart());
         combinedSet.setRealmEnd(getRealmEnd());
         return combinedSet;
+    }
+
+    @Override
+    public String getFunctionType() {
+        return "continuous";
+    }
+
+    @Override
+    public String getDefinition() {
+        return "continuous";
     }
 }
