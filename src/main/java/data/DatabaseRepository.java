@@ -112,56 +112,6 @@ public class DatabaseRepository {
         return result;
     }
 
-    //todo possible SQL injection - fix it
-    public List<Double> getAllPlayersAttribute(String attributeName) {
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-        List<Double> result = new ArrayList<>();
-        try {
-            Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/database.sqlite");
-            connection.setAutoCommit(false);
-
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT " + attributeName + " FROM PLAYERS_INFO");
-
-            while(resultSet.next()) {
-                result.add(resultSet.getDouble(attributeName));
-            }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeConnection(resultSet, statement, connection);
-        }
-
-        return result;
-    }
-
-    //todo possible SQL injection - fix it
-    public double getPlayerAttribute(Integer id, String attributeName) {
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-        double result = 0;
-        try {
-            Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/database.sqlite");
-            connection.setAutoCommit(false);
-
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT " + attributeName + " FROM PLAYERS_INFO WHERE ROWID = " + id);
-
-            result = resultSet.getDouble(attributeName);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeConnection(resultSet, statement, connection);
-        }
-
-        return result;
-    }
-
     private void closeConnection(ResultSet resultSet, Statement statement, Connection connection) {
         try {
             if (resultSet != null) {

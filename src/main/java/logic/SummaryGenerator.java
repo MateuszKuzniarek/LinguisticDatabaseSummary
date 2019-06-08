@@ -127,7 +127,6 @@ public class SummaryGenerator {
                 summary.setQuality(summary.getQuality() + quality);
             }
             summary.setQuality(summary.getQuality()/qualityMeasures.size());
-            //System.out.println(summary.getSummary());
 
         }
         summaries.sort(Comparator.comparing(Summary::getQuality));
