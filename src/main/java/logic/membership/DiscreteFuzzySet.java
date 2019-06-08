@@ -29,8 +29,11 @@ public class DiscreteFuzzySet extends FuzzySet {
 
     @Override
     public double calculateDegreeOfFuzziness() {
-        if (realmStart == realmEnd) { return 0; }
-        return calculateSupportCardinality() / (realmEnd - realmStart);
+        double realmCardinality = getRealmCardinality();
+        if (realmCardinality==0) {
+            return 0;
+        }
+        return calculateSupportCardinality() / realmCardinality;
     }
 
     @Override
@@ -49,7 +52,7 @@ public class DiscreteFuzzySet extends FuzzySet {
 
     @Override
     public double getRealmCardinality() {
-        return (realmEnd - realmStart);
+        return membershipValues.size();
     }
 
     @Override
@@ -92,7 +95,6 @@ public class DiscreteFuzzySet extends FuzzySet {
         return alphaCut;
     }
 
-    //todo how does complement of discrete set even look like? think about it
     @Override
     public FuzzySet getComplement() {
         List<Point> complementPoints = new ArrayList<>();
@@ -131,6 +133,26 @@ public class DiscreteFuzzySet extends FuzzySet {
 
     @Override
     public String getDefinition() {
-        return membershipValues.toString();
+        String result = "";
+        for(Point point : membershipValues) {
+            result += point.getY() + "/" + point.getX() + ";";
+        }
+        result = result.substring(0, result.length() - 1);
+        return result;
+    }
+
+    public static List<Point> getPointsOutOfDefinition(String setDefinition) throws Exception {
+        List<Point> result = new ArrayList<>();
+        String[] pointStrings = setDefinition.split(";");
+        for(String pointString : pointStrings) {
+            String[] coordinates = pointString.split("/");
+            double y = Double.parseDouble(coordinates[0]);
+            double x = Double.parseDouble(coordinates[1]);
+            Point point = new Point();
+            point.setX(x);
+            point.setY(y);
+            result.add(point);
+        }
+        return result;
     }
 }

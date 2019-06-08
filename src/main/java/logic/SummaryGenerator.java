@@ -126,6 +126,7 @@ public class SummaryGenerator {
                 double quality = qualityMeasure.getQuality(summary);
                 summary.setQuality(summary.getQuality() + quality);
             }
+            summary.setQuality(summary.getQuality()/qualityMeasures.size());
             //System.out.println(summary.getSummary());
 
         }

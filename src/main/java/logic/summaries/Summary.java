@@ -19,7 +19,7 @@ public class Summary {
     private Double quality = 0d;
 
     public String getSummary() {
-        DecimalFormat df = new DecimalFormat("#.00");
+        DecimalFormat df = new DecimalFormat("0.00");
         return getQuantifier().getLabel() + summarizer.getSummaryFragment() + " (" + df.format(getQuality()) + ")";
     }
 }

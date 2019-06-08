@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -55,15 +54,17 @@ public class ConfigViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        summarizerNameColumn.setCellValueFactory( new PropertyValueFactory<LinguisticVariable, String>("name"));
-        summarizerAttributeColumn.setCellValueFactory( new PropertyValueFactory<LinguisticVariable, String>("attribute"));
-        summarizerFunctionTypeColumn.setCellValueFactory( new PropertyValueFactory<LinguisticVariable, String>("functionType"));
-        summarizerDefinitionColumn.setCellValueFactory( new PropertyValueFactory<LinguisticVariable, String>("definition"));
+        summarizerNameColumn.setCellValueFactory(new PropertyValueFactory<LinguisticVariable, String>("name"));
+        summarizerAttributeColumn.setCellValueFactory(new PropertyValueFactory<LinguisticVariable, String>("attribute"));
+        summarizerFunctionTypeColumn.setCellValueFactory(new PropertyValueFactory<LinguisticVariable, String>(
+                "functionType"));
+        summarizerDefinitionColumn.setCellValueFactory(new PropertyValueFactory<LinguisticVariable, String>("definition"));
 
-        quantifierNameColumn.setCellValueFactory( new PropertyValueFactory<LinguisticVariable, String>("name"));
-        quantifierIsRelativeColumn.setCellValueFactory( new PropertyValueFactory<LinguisticVariable, String>("isRelative"));
-        quantifierFunctionTypeColumn.setCellValueFactory( new PropertyValueFactory<LinguisticVariable, String>("functionType"));
-        quantifierDefinitionColumn.setCellValueFactory( new PropertyValueFactory<LinguisticVariable, String>("definition"));
+        quantifierNameColumn.setCellValueFactory(new PropertyValueFactory<LinguisticVariable, String>("name"));
+        quantifierIsRelativeColumn.setCellValueFactory(new PropertyValueFactory<LinguisticVariable, String>("isRelative"));
+        quantifierFunctionTypeColumn.setCellValueFactory(new PropertyValueFactory<LinguisticVariable, String>(
+                "functionType"));
+        quantifierDefinitionColumn.setCellValueFactory(new PropertyValueFactory<LinguisticVariable, String>("definition"));
     }
 
     @FXML
@@ -94,7 +95,6 @@ public class ConfigViewController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
             AlertDisplayer.displayErrorAlert("Błąd", "Coś poszło nie tak");
-
         }
     }
 
@@ -131,17 +131,17 @@ public class ConfigViewController implements Initializable {
 
     @FXML
     public void close() {
-        Stage stage = (Stage)summarizersTableView.getScene().getWindow();
+        Stage stage = (Stage) summarizersTableView.getScene().getWindow();
         stage.close();
     }
 
     public void loadListView() {
         summarizersTableView.getItems().clear();
         quantifiersTableView.getItems().clear();
-        for(LinguisticVariable linguisticVariable : summaryGenerator.getLinguisticVariables()) {
+        for (LinguisticVariable linguisticVariable : summaryGenerator.getLinguisticVariables()) {
             summarizersTableView.getItems().add(new SummarizerRow(linguisticVariable));
         }
-        for(Quantifier quantifier : summaryGenerator.getQuantifiers()) {
+        for (Quantifier quantifier : summaryGenerator.getQuantifiers()) {
             quantifiersTableView.getItems().add(new QuantifierRow(quantifier));
         }
     }

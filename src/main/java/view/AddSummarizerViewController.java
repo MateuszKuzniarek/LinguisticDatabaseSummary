@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import logic.SummaryGenerator;
+import logic.membership.DiscreteFuzzySet;
 import logic.membership.FuzzySet;
 import logic.membership.LinguisticVariable;
 import logic.membership.TrapezoidFuzzySet;
@@ -22,6 +23,7 @@ import lombok.Setter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -155,27 +157,26 @@ public class AddSummarizerViewController implements Initializable {
     }
 
     private void addDiscreteSummarizer() throws Exception {
-        /*String name = nameTextField.getText();
+        String name = nameTextField.getText();
         String attribute = attributeComboBox.getValue();
-        String pointsText = p1TextField.getText();
-        double realmStart = Double.parseDouble(realmStartTextField.getText());
-        double realmEnd = Double.parseDouble(realmEndTextField.getText());
-        double minX =
-        if(!(realmStart<=points.stream().min(CPoint::getX).get() <=realmEnd)) {
-            throw new WrongDataException("wrong data");
+        List<Point> points = DiscreteFuzzySet.getPointsOutOfDefinition(realmStartTextField.getText());
+        for(Point point : points) {
+            if(point.getY()>1) throw new WrongDataException("wrong data");
         }
-        FuzzySet fuzzySet = new TriangularFuzzySet(p1,p2,p3);
-        LinguisticVariable linguisticVariable = new LinguisticVariable(name, attribute, fuzzySet);
-        summaryGenerator.getLinguisticVariables().add(linguisticVariable);*/
+        DiscreteFuzzySet discreteFuzzySet = new DiscreteFuzzySet();
+        discreteFuzzySet.setMembershipValues(points);
+        LinguisticVariable linguisticVariable = new LinguisticVariable(name, attribute, discreteFuzzySet);
+        summaryGenerator.getLinguisticVariables().add(linguisticVariable);
     }
 
     private void setDiscreteVisibility() {
         realmStartTextField.setVisible(true);
         realmStartLabel.setVisible(true);
-        realmEndTextField.setVisible(true);
-        realmEndLabel.setVisible(true);
-        p1TextField.setVisible(true);
-        p1Label.setVisible(true);
+        realmStartLabel.setText("Punkty: (y1/x1;y2/x2;...;yn/xn)");
+        realmEndTextField.setVisible(false);
+        realmEndLabel.setVisible(false);
+        p1TextField.setVisible(false);
+        p1Label.setVisible(false);
         p2TextField.setVisible(false);
         p2Label.setVisible(false);
         p3TextField.setVisible(false);
@@ -187,6 +188,7 @@ public class AddSummarizerViewController implements Initializable {
     private void setTriangularVisibility() {
         realmStartTextField.setVisible(true);
         realmStartLabel.setVisible(true);
+        realmStartLabel.setText("Początek przestrzeni rozważań");
         realmEndTextField.setVisible(true);
         realmEndLabel.setVisible(true);
         p1TextField.setVisible(true);
@@ -202,6 +204,7 @@ public class AddSummarizerViewController implements Initializable {
     private void setTrapezoidVisibility() {
         realmStartTextField.setVisible(true);
         realmStartLabel.setVisible(true);
+        realmStartLabel.setText("Początek przestrzeni rozważań");
         realmEndTextField.setVisible(true);
         realmEndLabel.setVisible(true);
         p1TextField.setVisible(true);
