@@ -1,6 +1,5 @@
 package logic.summaries;
 
-import logic.membership.Quantifier;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

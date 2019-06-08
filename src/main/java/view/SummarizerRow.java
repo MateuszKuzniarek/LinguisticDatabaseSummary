@@ -1,6 +1,6 @@
 package view;
 
-import logic.membership.LinguisticVariable;
+import logic.summaries.LinguisticVariable;
 import lombok.Data;
 
 @Data

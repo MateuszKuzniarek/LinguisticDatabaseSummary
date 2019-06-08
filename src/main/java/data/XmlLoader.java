@@ -2,8 +2,8 @@ package data;
 
 import exceptions.WrongConfigFileException;
 import logic.membership.FuzzySet;
-import logic.membership.Quantifier;
-import logic.membership.LinguisticVariable;
+import logic.summaries.Quantifier;
+import logic.summaries.LinguisticVariable;
 import logic.membership.TrapezoidFuzzySet;
 import logic.membership.TriangularFuzzySet;
 import org.w3c.dom.Document;

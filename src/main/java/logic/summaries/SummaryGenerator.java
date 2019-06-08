@@ -1,8 +1,8 @@
-package logic;
+package logic.summaries;
 
 import data.XmlLoader;
-import logic.membership.Quantifier;
-import logic.membership.LinguisticVariable;
+import logic.summaries.Quantifier;
+import logic.summaries.LinguisticVariable;
 import logic.qualitymeasures.QualityMeasure;
 import logic.summaries.Summarizer;
 import logic.summaries.Summary;

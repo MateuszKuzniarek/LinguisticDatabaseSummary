@@ -1,13 +1,8 @@
 package view;
 
-import com.sun.glass.ui.View;
 import data.DatabaseRepository;
 import data.PlayerInfo;
 import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,9 +16,8 @@ import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import logic.SummaryGenerator;
-import logic.membership.FuzzySet;
-import logic.membership.LinguisticVariable;
+import logic.summaries.SummaryGenerator;
+import logic.summaries.LinguisticVariable;
 import logic.qualitymeasures.DegreeOfAppropriateness;
 import logic.qualitymeasures.DegreeOfCovering;
 import logic.qualitymeasures.DegreeOfImprecision;
@@ -36,12 +30,10 @@ import logic.qualitymeasures.DegreeOfTruth;
 import logic.qualitymeasures.LengthOfQualifier;
 import logic.qualitymeasures.LengthOfSummary;
 import logic.summaries.Summary;
-import sun.security.krb5.Config;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;

@@ -1,7 +1,7 @@
 package logic.qualitymeasures;
 
 import data.PlayerInfo;
-import logic.membership.LinguisticVariable;
+import logic.summaries.LinguisticVariable;
 import logic.summaries.Operation;
 import logic.summaries.Summarizer;
 import logic.summaries.Summary;

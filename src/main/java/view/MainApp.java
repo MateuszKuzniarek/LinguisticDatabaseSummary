@@ -1,30 +1,10 @@
 package view;
 
-import data.DatabaseRepository;
-import data.PlayerInfo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import logic.SummaryGenerator;
-import logic.membership.FuzzySet;
-import logic.membership.TrapezoidFuzzySet;
-import logic.norms.MinTNorm;
-import logic.qualitymeasures.DegreeOfAppropriateness;
-import logic.qualitymeasures.DegreeOfCovering;
-import logic.qualitymeasures.DegreeOfImprecision;
-import logic.qualitymeasures.DegreeOfQualifierCardinality;
-import logic.qualitymeasures.DegreeOfQualifierImprecision;
-import logic.qualitymeasures.DegreeOfQuantifierCardinality;
-import logic.qualitymeasures.DegreeOfQuantifierImprecision;
-import logic.qualitymeasures.DegreeOfSummarizerCardinality;
-import logic.qualitymeasures.DegreeOfTruth;
-import logic.qualitymeasures.LengthOfQualifier;
-import logic.qualitymeasures.LengthOfSummary;
-import logic.summaries.Summary;
-
-import java.util.List;
 
 
 public class MainApp extends Application {

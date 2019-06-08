@@ -2,7 +2,6 @@ package logic.summaries;
 
 import data.DatabaseRepository;
 import data.PlayerInfo;
-import logic.membership.LinguisticVariable;
 import logic.norms.MaxSNorm;
 import logic.norms.MinTNorm;
 import logic.norms.Norm;

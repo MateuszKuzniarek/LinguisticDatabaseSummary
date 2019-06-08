@@ -4,16 +4,15 @@ import exceptions.WrongDataException;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import logic.SummaryGenerator;
+import logic.summaries.SummaryGenerator;
 import logic.membership.DiscreteFuzzySet;
 import logic.membership.FuzzySet;
-import logic.membership.LinguisticVariable;
+import logic.summaries.LinguisticVariable;
 import logic.membership.TrapezoidFuzzySet;
 import logic.membership.TriangularFuzzySet;
 import logic.utils.Point;
@@ -21,9 +20,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 

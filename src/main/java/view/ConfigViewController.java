@@ -10,9 +10,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import logic.SummaryGenerator;
-import logic.membership.LinguisticVariable;
-import logic.membership.Quantifier;
+import logic.summaries.SummaryGenerator;
+import logic.summaries.LinguisticVariable;
+import logic.summaries.Quantifier;
 import lombok.Getter;
 import lombok.Setter;
 

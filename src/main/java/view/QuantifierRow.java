@@ -1,8 +1,6 @@
 package view;
 
-import logic.membership.LinguisticVariable;
-import logic.membership.Quantifier;
-import logic.qualitymeasures.QualityMeasure;
+import logic.summaries.Quantifier;
 import lombok.Data;
 
 @Data

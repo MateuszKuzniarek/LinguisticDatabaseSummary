@@ -1,5 +1,6 @@
-package logic.membership;
+package logic.summaries;
 
+import logic.membership.FuzzySet;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
