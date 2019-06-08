@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <TabPane prefHeight="500.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ConfigViewController">
   <tabs>
     <Tab text="Sumaryzatory">
@@ -47,7 +46,7 @@
             </AnchorPane>
       </content>
     </Tab>
-    <Tab text="Kwantyzatory">
+    <Tab text="Kwantyfikatory">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="781.0">
                <children>

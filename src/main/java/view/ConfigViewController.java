@@ -1,10 +1,15 @@
 package view;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.SummaryGenerator;
 import logic.membership.LinguisticVariable;
@@ -12,6 +17,7 @@ import logic.membership.Quantifier;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
@@ -70,10 +76,26 @@ public class ConfigViewController implements Initializable {
 
     @FXML
     public void addSummarizer() {
-        SummarizerRow summarizerRow = summarizersTableView.getSelectionModel().getSelectedItem();
-        LinguisticVariable linguisticVariable = summarizerRow.getLinguisticVariable();
-        summaryGenerator.getLinguisticVariables().remove(linguisticVariable);
-        summarizersTableView.getItems().remove(summarizerRow);
+        try {
+            String fxmlFile = "/fxml/addSummarizerScene.fxml";
+            FXMLLoader loader = new FXMLLoader();
+            Parent rootNode = loader.load(getClass().getResourceAsStream(fxmlFile));
+            AddSummarizerViewController addSummarizerViewController = loader.getController();
+            addSummarizerViewController.setSummaryGenerator(summaryGenerator);
+            addSummarizerViewController.setConfigViewController(this);
+
+            Scene scene = new Scene(rootNode, 500, 400);
+            Stage stage = new Stage();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(summarizersTableView.getScene().getWindow());
+            stage.setTitle("Dodaj sumaryzator");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            AlertDisplayer.displayErrorAlert("Błąd", "Coś poszło nie tak");
+
+        }
     }
 
     @FXML
@@ -86,7 +108,25 @@ public class ConfigViewController implements Initializable {
 
     @FXML
     public void addQuantifier() {
+        try {
+            String fxmlFile = "/fxml/addQuantifierScene.fxml";
+            FXMLLoader loader = new FXMLLoader();
+            Parent rootNode = loader.load(getClass().getResourceAsStream(fxmlFile));
+            AddQuantifierViewController addQuantifierViewController = loader.getController();
+            addQuantifierViewController.setSummaryGenerator(summaryGenerator);
+            addQuantifierViewController.setConfigViewController(this);
 
+            Scene scene = new Scene(rootNode, 500, 400);
+            Stage stage = new Stage();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(summarizersTableView.getScene().getWindow());
+            stage.setTitle("Dodaj kwantyfikator");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            AlertDisplayer.displayErrorAlert("Błąd", "Coś poszło nie tak");
+        }
     }
 
     @FXML
@@ -95,8 +135,9 @@ public class ConfigViewController implements Initializable {
         stage.close();
     }
 
-    public void loadListView(SummaryGenerator summaryGenerator) {
-        this.summaryGenerator = summaryGenerator;
+    public void loadListView() {
+        summarizersTableView.getItems().clear();
+        quantifiersTableView.getItems().clear();
         for(LinguisticVariable linguisticVariable : summaryGenerator.getLinguisticVariables()) {
             summarizersTableView.getItems().add(new SummarizerRow(linguisticVariable));
         }

@@ -215,7 +215,8 @@ public class ViewController implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             Parent rootNode = loader.load(getClass().getResourceAsStream(fxmlFile));
             ConfigViewController configViewController = loader.getController();
-            configViewController.loadListView(summaryGenerator);
+            configViewController.setSummaryGenerator(summaryGenerator);
+            configViewController.loadListView();
 
             Scene scene = new Scene(rootNode, 800, 500);
             resetCombBoxes();
