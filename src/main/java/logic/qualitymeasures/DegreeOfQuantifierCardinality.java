@@ -10,4 +10,9 @@ public class DegreeOfQuantifierCardinality implements QualityMeasure{
         FuzzySet summaryFuzzySet = summary.getQuantifier().getFuzzySet();
         return 1.0 - summaryFuzzySet.calculateCardinality()/ summaryFuzzySet.getRealmCardinality();
     }
+
+    @Override
+    public String toString() {
+        return "T7";
+    }
 }

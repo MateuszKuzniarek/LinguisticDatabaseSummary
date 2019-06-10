@@ -66,4 +66,9 @@ public class DegreeOfTruth implements QualityMeasure {
         }
         return getQualityForAbsoluteQuantifier(summary);
     }
+
+    @Override
+    public String toString() {
+        return "T1";
+    }
 }

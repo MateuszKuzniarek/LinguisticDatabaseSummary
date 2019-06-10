@@ -11,4 +11,9 @@ public class LengthOfQualifier implements QualityMeasure {
         if(numberOfQualifiers==0) numberOfQualifiers = 1;
         return 2 * Math.pow(0.5, numberOfQualifiers);
     }
+
+    @Override
+    public String toString() {
+        return "T11";
+    }
 }

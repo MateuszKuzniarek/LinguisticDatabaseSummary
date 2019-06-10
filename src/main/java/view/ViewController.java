@@ -116,9 +116,12 @@ public class ViewController implements Initializable {
 
         addQualityMeasures(summaryGenerator);
 
+        System.out.println("----------------------------------------------------\n\n\n\n");
         summaryGenerator.sortSummariesByQuality();
         for (Summary summary : summaryGenerator.getSummaries()) {
             textArea.setText(textArea.getText() + summary.getSummary() + "\n");
+            System.out.println(summary.getSummary());
+            System.out.println(summary.getQualities() + "\n");
         }
     }
 

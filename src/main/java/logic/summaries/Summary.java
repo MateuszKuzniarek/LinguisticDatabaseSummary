@@ -16,6 +16,8 @@ public class Summary {
     private Quantifier quantifier;
     @Builder.Default
     private Double quality = 0d;
+    @Builder.Default
+    private String qualities = "";
 
     public String getSummary() {
         DecimalFormat df = new DecimalFormat("0.00");

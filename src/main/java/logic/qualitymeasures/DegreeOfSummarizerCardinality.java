@@ -16,4 +16,9 @@ public class DegreeOfSummarizerCardinality implements QualityMeasure {
         }
         return 1.0 - Math.pow(quality, 1.0 / numberOfSummarizers);
     }
+
+    @Override
+    public String toString() {
+        return "T8";
+    }
 }

@@ -9,4 +9,9 @@ public class LengthOfSummary implements QualityMeasure {
         int numberOfSummarizers = summary.getSummarizer().getSummarizerOperations().size();
         return 2 * Math.pow(0.5, numberOfSummarizers);
     }
+
+    @Override
+    public String toString() {
+        return "T5";
+    }
 }

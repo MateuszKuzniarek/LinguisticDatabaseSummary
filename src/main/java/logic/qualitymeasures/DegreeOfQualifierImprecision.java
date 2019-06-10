@@ -17,4 +17,9 @@ public class DegreeOfQualifierImprecision implements QualityMeasure {
         }
         return 1.0 - Math.pow(quality, 1.0 / numberOfQualifiers);
     }
+
+    @Override
+    public String toString() {
+        return "T9";
+    }
 }

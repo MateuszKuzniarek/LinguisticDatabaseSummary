@@ -55,8 +55,8 @@
 		
 		<linguisticVariable type="trapezoid" attribute="age" name="teenager" a1="15" b1="16" b2="18" a2="19" realm-start="15" realm-end="60"/>
 		<linguisticVariable type="trapezoid" attribute="age" name="young" a1="16" b1="20" b2="26" a2="30" realm-start="15" realm-end="60"/>
-		<linguisticVariable type="trapezoid" attribute="age" name="middle age" a1="25" b1="28" b2="32" a2="35" realm-start="15" realm-end="60"/>
-		<linguisticVariable type="trapezoid" attribute="age" name="advanced age" a1="30" b1="34" b2="38" a2="40" realm-start="15" realm-end="60"/>
+		<linguisticVariable type="trapezoid" attribute="age" name="middle aged" a1="25" b1="28" b2="32" a2="35" realm-start="15" realm-end="60"/>
+		<linguisticVariable type="trapezoid" attribute="age" name="in advanced age" a1="30" b1="34" b2="38" a2="40" realm-start="15" realm-end="60"/>
 		<linguisticVariable type="trapezoid" attribute="age" name="old" a1="36" b1="40" b2="60" a2="60" realm-start="15" realm-end="60"/>
 		
     </linguisticVariables>

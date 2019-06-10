@@ -124,6 +124,7 @@ public class SummaryGenerator {
         for (Summary summary : summaries) {
             for (QualityMeasure qualityMeasure : qualityMeasures) {
                 double quality = qualityMeasure.getQuality(summary);
+                summary.setQualities(summary.getQualities() + qualityMeasure.toString() + " = " + quality + " ");
                 summary.setQuality(summary.getQuality() + quality);
             }
             summary.setQuality(summary.getQuality()/qualityMeasures.size());

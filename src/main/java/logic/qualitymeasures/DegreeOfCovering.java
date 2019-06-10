@@ -48,4 +48,9 @@ public class DegreeOfCovering implements QualityMeasure {
         }
         return sumOfT / sumOfH;
     }
+
+    @Override
+    public String toString() {
+        return "T3";
+    }
 }

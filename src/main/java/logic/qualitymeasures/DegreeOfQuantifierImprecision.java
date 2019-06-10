@@ -7,4 +7,9 @@ public class DegreeOfQuantifierImprecision implements QualityMeasure{
     public double getQuality(Summary summary) {
         return 1.0 - summary.getQuantifier().getFuzzySet().calculateDegreeOfFuzziness();
     }
+
+    @Override
+    public String toString() {
+        return "T6";
+    }
 }

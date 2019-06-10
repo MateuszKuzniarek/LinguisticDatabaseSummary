@@ -50,4 +50,9 @@ public class DegreeOfAppropriateness implements QualityMeasure{
         }
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "T4";
+    }
 }
