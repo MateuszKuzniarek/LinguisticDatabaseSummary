@@ -118,10 +118,10 @@ public class ViewController implements Initializable {
 
         System.out.println("----------------------------------------------------\n\n\n\n");
         summaryGenerator.sortSummariesByQuality();
-        for (Summary summary : summaryGenerator.getSummaries()) {
-            textArea.setText(textArea.getText() + summary.getSummary() + "\n");
-            System.out.println(summary.getSummary());
-            System.out.println(summary.getQualities() + "\n");
+        for (int i=0; i<10; i++) {
+            textArea.setText(textArea.getText() + summaryGenerator.getSummaries().get(i).getSummary() + "\n");
+            System.out.println(summaryGenerator.getSummaries().get(i).getSummary());
+            System.out.println(summaryGenerator.getSummaries().get(i).getQualities() + "\n");
         }
     }
 
