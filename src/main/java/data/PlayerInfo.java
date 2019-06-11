@@ -35,6 +35,8 @@ public class PlayerInfo {
                 return acceleration;
             case "sprint_speed":
                 return sprintSpeed;
+            case "agility":
+                return sprintSpeed;
             case "shot_power":
                 return shotPower;
             case "stamina":

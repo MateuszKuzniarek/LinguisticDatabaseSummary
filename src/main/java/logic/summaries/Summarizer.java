@@ -49,7 +49,7 @@ public class Summarizer {
 
         for (int i = 1; i < summarizerOperations.size(); i++) {
 
-            linguisticVariable = summarizerOperations.get(0).getLinguisticVariable();
+            linguisticVariable = summarizerOperations.get(i).getLinguisticVariable();
             attributeValue = playerInfo.getAttributeValue(linguisticVariable.getAttributeName());
             summarizerValue = summarizerOperations.get(i).norm.calculateNorm(
                     summarizerValue,
@@ -71,7 +71,7 @@ public class Summarizer {
 
         for (int i = 1; i < qualifierOperations.size(); i++) {
 
-            linguisticVariable = qualifierOperations.get(0).getLinguisticVariable();
+            linguisticVariable = qualifierOperations.get(i).getLinguisticVariable();
             attributeValue = playerInfo.getAttributeValue(linguisticVariable.getAttributeName());
             qualifierValue = qualifierOperations.get(i).norm.calculateNorm(
                     qualifierValue,
@@ -85,14 +85,14 @@ public class Summarizer {
         if(!qualifierOperations.isEmpty()) {
             result += " being/having " + qualifierOperations.get(0).getLinguisticVariable().getLabel();
             for (int i = 1; i < qualifierOperations.size(); i++) {
-                result += " " + qualifierOperations.get(i).norm.getSummaryFragment() + " " +
+                result += " " + qualifierOperations.get(i).norm.getSummaryFragment() + " being/having " +
                         qualifierOperations.get(i).getLinguisticVariable().getLabel();
             }
         }
 
         result += " are/have " + summarizerOperations.get(0).getLinguisticVariable().getLabel();
         for (int i = 1; i < summarizerOperations.size(); i++) {
-            result += " " + summarizerOperations.get(i).norm.getSummaryFragment() + " " +
+            result += " " + summarizerOperations.get(i).norm.getSummaryFragment() + " are/have " +
                     summarizerOperations.get(i).getLinguisticVariable().getLabel();
         }
         return result;

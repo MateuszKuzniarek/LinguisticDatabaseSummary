@@ -55,7 +55,6 @@ public class DegreeOfTruth implements QualityMeasure {
             }
             qualifiersSumOfQuaValues.put(summary.getSummarizer(), sumOfQualifierValues);
         }
-
         return summary.getQuantifier().getValue(sumOfSummarizerValues/sumOfQualifierValues);
     }
 

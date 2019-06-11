@@ -8,6 +8,7 @@ import logic.summaries.Summarizer;
 import logic.summaries.Summary;
 import lombok.Data;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -69,8 +70,28 @@ public class SummaryGenerator {
         summaries.addAll(getYagerSummaries(linguisticVariable));
     }
 
+    public void addYagerSummaries(String attributeName) {
+        for(LinguisticVariable linguisticVariable : linguisticVariables) {
+            if(linguisticVariable.getAttributeName().equals(attributeName)) {
+                addYagerSummaries(linguisticVariable);
+            }
+        }
+    }
+
     public void addCompoundSummaries(LinguisticVariable firstLinguisticVariable, LinguisticVariable secondLinguisticVariable) {
         summaries.addAll(getCompoundSummaries(firstLinguisticVariable, secondLinguisticVariable));
+    }
+
+    public void addCompoundSummaries(String firstAttributeName, String secondAttributeName) {
+        for(LinguisticVariable linguisticVariable : linguisticVariables) {
+            if(linguisticVariable.getAttributeName().equals(firstAttributeName)) {
+                for(LinguisticVariable secondLinguisticVariable : linguisticVariables) {
+                    if(secondLinguisticVariable.getAttributeName().equals(secondAttributeName)) {
+                        addCompoundSummaries(linguisticVariable, secondLinguisticVariable);
+                    }
+                }
+            }
+        }
     }
 
     public void addSummariesWithQualifier(LinguisticVariable firstSummarizer, LinguisticVariable secondSummarizer,
@@ -110,6 +131,21 @@ public class SummaryGenerator {
         }
     }
 
+    public void addSummariesWithQualifier(String firstAttributeName, String secondAttributeName,
+            LinguisticVariable firstQualifier, LinguisticVariable secondQualifier) {
+
+        for(LinguisticVariable linguisticVariable : linguisticVariables) {
+            if(linguisticVariable.getAttributeName().equals(firstAttributeName)) {
+                for(LinguisticVariable secondLinguisticVariable : linguisticVariables) {
+                    if(secondLinguisticVariable.getAttributeName().equals(secondAttributeName)) {
+                        addSummariesWithQualifier(linguisticVariable, secondLinguisticVariable, firstQualifier, secondQualifier);
+                    }
+                }
+            }
+        }
+
+    }
+
     public List<LinguisticVariable> getLinguisticVariablesByAttributeName(String attributeName) {
         List<LinguisticVariable> result = new ArrayList<>();
         for(LinguisticVariable linguisticVariable : linguisticVariables) {
@@ -121,10 +157,12 @@ public class SummaryGenerator {
     }
 
     public void sortSummariesByQuality() {
+        DecimalFormat df = new DecimalFormat("0.00");
         for (Summary summary : summaries) {
             for (QualityMeasure qualityMeasure : qualityMeasures) {
                 double quality = qualityMeasure.getQuality(summary);
-                summary.setQualities(summary.getQualities() + qualityMeasure.toString() + " = " + quality + " ");
+                //summary.setQualities(summary.getQualities() + qualityMeasure.toString() + " = " + quality + " ");
+                summary.setQualities(summary.getQualities() + df.format(quality) + "&");
                 summary.setQuality(summary.getQuality() + quality);
             }
             summary.setQuality(summary.getQuality()/qualityMeasures.size());

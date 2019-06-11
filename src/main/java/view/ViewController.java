@@ -98,20 +98,39 @@ public class ViewController implements Initializable {
     public void summarize() {
         textArea.setText("");
         summaryGenerator.clearSummaries();
+        summaryGenerator.getQualityMeasures().clear();
         LinguisticVariable summarizer1 = summarizer1FuzzySetComboBox.getValue();
         LinguisticVariable summarizer2 = summarizer2FuzzySetComboBox.getValue();
         LinguisticVariable qualifier1 = qualifier1FuzzySetComboBox.getValue();
         LinguisticVariable qualifier2 = qualifier2FuzzySetComboBox.getValue();
 
         if (yCheckBox.isSelected()) {
-            summaryGenerator.addYagerSummaries(summarizer1);
-            summaryGenerator.addYagerSummaries(summarizer2);
+            if (summarizer1==null) {
+                summaryGenerator.addYagerSummaries(summarizer1ComboBox.getValue());
+            } else {
+                summaryGenerator.addYagerSummaries(summarizer1);
+            }
+            if(summarizer2==null) {
+                summaryGenerator.addYagerSummaries(summarizer2ComboBox.getValue());
+            } else {
+                summaryGenerator.addYagerSummaries(summarizer2);
+            }
         }
         if (gCheckBox.isSelected()) {
-            summaryGenerator.addCompoundSummaries(summarizer1, summarizer2);
+            if(summarizer1==null && summarizer2==null) {
+                summaryGenerator.addCompoundSummaries(summarizer1ComboBox.getValue(), summarizer2ComboBox.getValue());
+            }
+            else if(summarizer1!=null && summarizer2!=null){
+                summaryGenerator.addCompoundSummaries(summarizer1, summarizer2);
+            }
         }
         if (kCheckBox.isSelected()) {
-            summaryGenerator.addSummariesWithQualifier(summarizer1, summarizer2, qualifier1, qualifier2);
+            if(summarizer1==null && summarizer2==null) {
+                summaryGenerator.addSummariesWithQualifier(summarizer1ComboBox.getValue(), summarizer2ComboBox.getValue(),
+                        qualifier1, qualifier2);
+            } else if(summarizer1!=null && summarizer2!=null) {
+                summaryGenerator.addSummariesWithQualifier(summarizer1, summarizer2, qualifier1, qualifier2);
+            }
         }
 
         addQualityMeasures(summaryGenerator);
@@ -119,6 +138,7 @@ public class ViewController implements Initializable {
         System.out.println("----------------------------------------------------\n\n\n\n");
         summaryGenerator.sortSummariesByQuality();
         for (int i=0; i<10; i++) {
+            if(i>=summaryGenerator.getSummaries().size()) return;
             textArea.setText(textArea.getText() + summaryGenerator.getSummaries().get(i).getSummary() + "\n");
             System.out.println(summaryGenerator.getSummaries().get(i).getSummary());
             System.out.println(summaryGenerator.getSummaries().get(i).getQualities() + "\n");
@@ -145,8 +165,8 @@ public class ViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         summarizeButton.disableProperty().bind(
-                Bindings.isNull(summarizer1FuzzySetComboBox.getSelectionModel().selectedItemProperty())
-                        .or(Bindings.isNull(summarizer2FuzzySetComboBox.getSelectionModel().selectedItemProperty()))
+                Bindings.isNull(summarizer1ComboBox.getSelectionModel().selectedItemProperty())
+                        .or(Bindings.isNull(summarizer2ComboBox.getSelectionModel().selectedItemProperty()))
                         .or(t1.selectedProperty().not()
                                 .and(t2.selectedProperty().not())
                                 .and(t3.selectedProperty().not())
