@@ -92,7 +92,7 @@ public class ViewController implements Initializable {
     private SummaryGenerator summaryGenerator= new SummaryGenerator();
 
     private static final List<String> attributes = Arrays.asList("height", "weight", "overall_rating", "potential",
-            "acceleration", "sprint_speed", "agility", "shot_power", "stamina", "strength", "aggression", "age");
+            "acceleration", "sprint_speed", "agility", "shot_power", "stamina", "strength", "aggression", "age", "");
 
     @FXML
     public void summarize() {
@@ -105,31 +105,39 @@ public class ViewController implements Initializable {
         LinguisticVariable qualifier2 = qualifier2FuzzySetComboBox.getValue();
 
         if (yCheckBox.isSelected()) {
-            if (summarizer1==null) {
-                summaryGenerator.addYagerSummaries(summarizer1ComboBox.getValue());
-            } else {
-                summaryGenerator.addYagerSummaries(summarizer1);
+            if(summarizer1ComboBox.getValue()!=null) {
+                if (summarizer1==null) {
+                    summaryGenerator.addYagerSummaries(summarizer1ComboBox.getValue());
+                } else {
+                    summaryGenerator.addYagerSummaries(summarizer1);
+                }
             }
-            if(summarizer2==null) {
-                summaryGenerator.addYagerSummaries(summarizer2ComboBox.getValue());
-            } else {
-                summaryGenerator.addYagerSummaries(summarizer2);
+            if(summarizer2ComboBox.getValue()!=null) {
+                if(summarizer2==null) {
+                    summaryGenerator.addYagerSummaries(summarizer2ComboBox.getValue());
+                } else {
+                    summaryGenerator.addYagerSummaries(summarizer2);
+                }
             }
         }
         if (gCheckBox.isSelected()) {
-            if(summarizer1==null && summarizer2==null) {
-                summaryGenerator.addCompoundSummaries(summarizer1ComboBox.getValue(), summarizer2ComboBox.getValue());
-            }
-            else if(summarizer1!=null && summarizer2!=null){
-                summaryGenerator.addCompoundSummaries(summarizer1, summarizer2);
+            if(summarizer1ComboBox.getValue()!=null && summarizer2ComboBox.getValue()!=null) {
+                if(summarizer1==null && summarizer2==null) {
+                    summaryGenerator.addCompoundSummaries(summarizer1ComboBox.getValue(), summarizer2ComboBox.getValue());
+                }
+                else if(summarizer1!=null && summarizer2!=null){
+                    summaryGenerator.addCompoundSummaries(summarizer1, summarizer2);
+                }
             }
         }
         if (kCheckBox.isSelected()) {
-            if(summarizer1==null && summarizer2==null) {
-                summaryGenerator.addSummariesWithQualifier(summarizer1ComboBox.getValue(), summarizer2ComboBox.getValue(),
-                        qualifier1, qualifier2);
-            } else if(summarizer1!=null && summarizer2!=null) {
-                summaryGenerator.addSummariesWithQualifier(summarizer1, summarizer2, qualifier1, qualifier2);
+            if(summarizer1ComboBox.getValue()!=null && summarizer2ComboBox.getValue()!=null) {
+                if(summarizer1==null && summarizer2==null) {
+                    summaryGenerator.addSummariesWithQualifier(summarizer1ComboBox.getValue(), summarizer2ComboBox.getValue(),
+                            qualifier1, qualifier2);
+                } else if(summarizer1!=null && summarizer2!=null) {
+                    summaryGenerator.addSummariesWithQualifier(summarizer1, summarizer2, qualifier1, qualifier2);
+                }
             }
         }
 
@@ -166,7 +174,7 @@ public class ViewController implements Initializable {
 
         summarizeButton.disableProperty().bind(
                 Bindings.isNull(summarizer1ComboBox.getSelectionModel().selectedItemProperty())
-                        .or(Bindings.isNull(summarizer2ComboBox.getSelectionModel().selectedItemProperty()))
+                                .and(Bindings.isNull(summarizer2ComboBox.getSelectionModel().selectedItemProperty()))
                         .or(t1.selectedProperty().not()
                                 .and(t2.selectedProperty().not())
                                 .and(t3.selectedProperty().not())

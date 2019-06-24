@@ -20,7 +20,6 @@ public class PlayerInfo {
     private Double aggression;
     private Double age;
 
-    //todo it should throw exception not return 0
     public Double getAttributeValue(String attribute) {
         switch(attribute) {
             case "height":
