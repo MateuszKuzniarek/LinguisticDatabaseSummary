@@ -96,10 +96,10 @@ public class AddQuantifierViewController implements Initializable {
             stage.close();
         } catch (WrongDataException | NumberFormatException e) {
             //e.printStackTrace();
-            AlertDisplayer.displayErrorAlert("Błąd", "Nieprawidłowe dane");
+            AlertDisplayer.displayErrorAlert("Nieprawidłowe dane");
         } catch (Exception e) {
             e.printStackTrace();
-            AlertDisplayer.displayErrorAlert("Błąd", "Coś poszło nie tak");
+            AlertDisplayer.displayErrorAlert("Coś poszło nie tak");
         }
     }
 

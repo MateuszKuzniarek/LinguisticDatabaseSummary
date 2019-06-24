@@ -1,6 +1,5 @@
 package logic.qualitymeasures;
 
-import data.DatabaseRepository;
 import data.PlayerInfo;
 import logic.summaries.Summarizer;
 import logic.summaries.Summary;

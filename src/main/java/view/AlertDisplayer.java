@@ -2,11 +2,11 @@ package view;
 
 import javafx.scene.control.Alert;
 
-public class AlertDisplayer {
+class AlertDisplayer {
 
-    public static void displayErrorAlert(String title, String message) {
+    static void displayErrorAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+        alert.setTitle("Błąd");
         alert.setContentText(message);
 
         alert.showAndWait();

@@ -16,8 +16,6 @@ import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import logic.summaries.SummaryGenerator;
-import logic.summaries.LinguisticVariable;
 import logic.qualitymeasures.DegreeOfAppropriateness;
 import logic.qualitymeasures.DegreeOfCovering;
 import logic.qualitymeasures.DegreeOfImprecision;
@@ -29,7 +27,8 @@ import logic.qualitymeasures.DegreeOfSummarizerCardinality;
 import logic.qualitymeasures.DegreeOfTruth;
 import logic.qualitymeasures.LengthOfQualifier;
 import logic.qualitymeasures.LengthOfSummary;
-import logic.summaries.Summary;
+import logic.summaries.LinguisticVariable;
+import logic.summaries.SummaryGenerator;
 
 import java.io.File;
 import java.io.FileWriter;

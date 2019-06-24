@@ -94,7 +94,7 @@ public class ConfigViewController implements Initializable {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            AlertDisplayer.displayErrorAlert("Błąd", "Coś poszło nie tak");
+            AlertDisplayer.displayErrorAlert("Coś poszło nie tak");
         }
     }
 
@@ -125,7 +125,7 @@ public class ConfigViewController implements Initializable {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            AlertDisplayer.displayErrorAlert("Błąd", "Coś poszło nie tak");
+            AlertDisplayer.displayErrorAlert("Coś poszło nie tak");
         }
     }
 
@@ -135,7 +135,7 @@ public class ConfigViewController implements Initializable {
         stage.close();
     }
 
-    public void loadListView() {
+    void loadListView() {
         summarizersTableView.getItems().clear();
         quantifiersTableView.getItems().clear();
         for (LinguisticVariable linguisticVariable : summaryGenerator.getLinguisticVariables()) {

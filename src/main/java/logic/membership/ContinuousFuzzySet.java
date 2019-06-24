@@ -3,7 +3,7 @@ package logic.membership;
 import logic.norms.Norm;
 
 public abstract class ContinuousFuzzySet extends FuzzySet {
-    protected static final double INTEGRAL_PRECISION = 5000;
+    private static final double INTEGRAL_PRECISION = 5000;
 
     public double calculateDegreeOfFuzziness() {
         if (realmStart == realmEnd) { return 0; }

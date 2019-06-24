@@ -21,22 +21,22 @@ public class Summarizer {
     private List<Operation> summarizerOperations = new ArrayList<>();
     private List<Operation> qualifierOperations = new ArrayList<>();
 
-    public Summarizer andSummarizer(LinguisticVariable linguisticVariable) {
+    Summarizer andSummarizer(LinguisticVariable linguisticVariable) {
         summarizerOperations.add(new Operation(tNorm, linguisticVariable));
         return this;
     }
 
-    public Summarizer orSummarizer(LinguisticVariable linguisticVariable) {
+    Summarizer orSummarizer(LinguisticVariable linguisticVariable) {
         summarizerOperations.add(new Operation(sNorm, linguisticVariable));
         return this;
     }
 
-    public Summarizer andQualifier(LinguisticVariable linguisticVariable) {
+    Summarizer andQualifier(LinguisticVariable linguisticVariable) {
         qualifierOperations.add(new Operation(tNorm, linguisticVariable));
         return this;
     }
 
-    public Summarizer orQualifier(LinguisticVariable linguisticVariable) {
+    Summarizer orQualifier(LinguisticVariable linguisticVariable) {
         qualifierOperations.add(new Operation(sNorm, linguisticVariable));
         return this;
     }
@@ -64,7 +64,6 @@ public class Summarizer {
             return 1;
         }
 
-
         LinguisticVariable linguisticVariable = qualifierOperations.get(0).getLinguisticVariable();
         double attributeValue = playerInfo.getAttributeValue(linguisticVariable.getAttributeName());
         double qualifierValue = linguisticVariable.getFuzzySet().calculateMembership(attributeValue);
@@ -80,21 +79,25 @@ public class Summarizer {
         return qualifierValue;
     }
 
-    public String getSummaryFragment() {
-        String result = " players";
+    String getSummaryFragment() {
+        StringBuilder result = new StringBuilder(" players");
         if(!qualifierOperations.isEmpty()) {
-            result += " being/having " + qualifierOperations.get(0).getLinguisticVariable().getLabel();
+            result.append(" being/having ").append(qualifierOperations.get(0).getLinguisticVariable().getLabel());
             for (int i = 1; i < qualifierOperations.size(); i++) {
-                result += " " + qualifierOperations.get(i).norm.getSummaryFragment() + " being/having " +
-                        qualifierOperations.get(i).getLinguisticVariable().getLabel();
+                result.append(" ")
+                        .append(qualifierOperations.get(i).norm.getSummaryFragment())
+                        .append(" being/having ")
+                        .append(qualifierOperations.get(i).getLinguisticVariable().getLabel());
             }
         }
 
-        result += " are/have " + summarizerOperations.get(0).getLinguisticVariable().getLabel();
+        result.append(" are/have ").append(summarizerOperations.get(0).getLinguisticVariable().getLabel());
         for (int i = 1; i < summarizerOperations.size(); i++) {
-            result += " " + summarizerOperations.get(i).norm.getSummaryFragment() + " are/have " +
-                    summarizerOperations.get(i).getLinguisticVariable().getLabel();
+            result.append(" ")
+                    .append(summarizerOperations.get(i).norm.getSummaryFragment())
+                    .append(" are/have ")
+                    .append(summarizerOperations.get(i).getLinguisticVariable().getLabel());
         }
-        return result;
+        return result.toString();
     }
 }

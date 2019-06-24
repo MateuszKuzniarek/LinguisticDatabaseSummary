@@ -8,7 +8,6 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class DiscreteFuzzySet extends FuzzySet {
@@ -133,15 +132,15 @@ public class DiscreteFuzzySet extends FuzzySet {
 
     @Override
     public String getDefinition() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for(Point point : membershipValues) {
-            result += point.getY() + "/" + point.getX() + ";";
+            result.append(point.getY()).append("/").append(point.getX()).append(";");
         }
-        result = result.substring(0, result.length() - 1);
-        return result;
+        result = new StringBuilder(result.substring(0, result.length() - 1));
+        return result.toString();
     }
 
-    public static List<Point> getPointsOutOfDefinition(String setDefinition) throws Exception {
+    public static List<Point> getPointsOutOfDefinition(String setDefinition) {
         List<Point> result = new ArrayList<>();
         String[] pointStrings = setDefinition.split(";");
         for(String pointString : pointStrings) {

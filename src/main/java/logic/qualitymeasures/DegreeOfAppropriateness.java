@@ -25,7 +25,7 @@ public class DegreeOfAppropriateness implements QualityMeasure{
 
     @Override
     public double getQuality(Summary summary) {
-        double result = 0;
+        double result;
         if(summarizersQualities.containsKey(summary.getSummarizer())) {
             return summarizersQualities.get(summary.getSummarizer());
         } else {

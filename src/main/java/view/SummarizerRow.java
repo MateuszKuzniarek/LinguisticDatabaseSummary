@@ -4,14 +4,14 @@ import logic.summaries.LinguisticVariable;
 import lombok.Data;
 
 @Data
-public class SummarizerRow {
+class SummarizerRow {
     private String name;
     private String attribute;
     private String functionType;
     private String definition;
     private LinguisticVariable linguisticVariable;
 
-    public SummarizerRow(LinguisticVariable linguisticVariable) {
+    SummarizerRow(LinguisticVariable linguisticVariable) {
         this.name = linguisticVariable.getLabel();
         this.attribute = linguisticVariable.getAttributeName();
         if("trapezoid".equals(linguisticVariable.getFuzzySet().getFunctionType())) {
