@@ -57,7 +57,7 @@ public abstract class ContinuousFuzzySet extends FuzzySet {
 
             @Override
             public double calculateMembership(double attributeValue) {
-                if(Math.abs(fuzzySet.calculateMembership(attributeValue) - 1.0)<precision) return 1;
+                if(Math.abs(fuzzySet.calculateMembership(attributeValue) - 1.0)<PRECISION) return 1;
                 else return 0;
             }
         };

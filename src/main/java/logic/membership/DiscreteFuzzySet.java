@@ -19,7 +19,7 @@ public class DiscreteFuzzySet extends FuzzySet {
     @Override
     public double calculateMembership(double attributeValue) {
         for(Point point : membershipValues) {
-            if(Math.abs(point.getX()-attributeValue)<precision) {
+            if(Math.abs(point.getX()-attributeValue)<PRECISION) {
                 return point.getY();
             }
         }
@@ -69,7 +69,7 @@ public class DiscreteFuzzySet extends FuzzySet {
 
     @Override
     public FuzzySet getCore() {
-        List<Point> corePoints = membershipValues.stream().filter(p -> Math.abs(p.getY()-1.0)<precision).collect(
+        List<Point> corePoints = membershipValues.stream().filter(p -> Math.abs(p.getY()-1.0)<PRECISION).collect(
                 Collectors.toList());
         DiscreteFuzzySet core = new DiscreteFuzzySet();
         core.setMembershipValues(corePoints);
@@ -85,7 +85,7 @@ public class DiscreteFuzzySet extends FuzzySet {
 
     @Override
     public FuzzySet getAlphaCut(double alpha) {
-        List<Point> alphaCutPoints = membershipValues.stream().filter(p -> Math.abs(p.getY()-alpha)<precision).collect(
+        List<Point> alphaCutPoints = membershipValues.stream().filter(p -> Math.abs(p.getY()-alpha)<PRECISION).collect(
                 Collectors.toList());
         DiscreteFuzzySet alphaCut = new DiscreteFuzzySet();
         alphaCut.setMembershipValues(alphaCutPoints);

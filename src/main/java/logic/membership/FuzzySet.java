@@ -6,7 +6,7 @@ import lombok.Setter;
 
 public abstract class FuzzySet {
 
-    static final double precision = 0.001;
+    static final double PRECISION = 0.001;
 
     @Getter
     @Setter
